@@ -1,0 +1,1 @@
+<script src="<?=$this->config->item('base_assets')?>bootstrap/3.3.4/js/bootstrap.min.js"></script>

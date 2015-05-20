@@ -1,0 +1,6 @@
+navbar
+main 	- sidebar
+		- main content
+			x breadcrumb
+			- page content
+		- footer 

@@ -1,0 +1,1 @@
+<script src="<?=$this->config->item('base_assets')?>app/ace-admin/js/bootstrap-datepicker.min.js"></script>
