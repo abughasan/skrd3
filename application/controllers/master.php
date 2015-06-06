@@ -46,7 +46,7 @@ class Master extends CI_Controller {
 		);
 		$var['jqgrid_at'] = array(										#--- mendefinisikan attribut kolom pada jqgrid
 			$var['kolom'][1] => 'hidden:false,width:30',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][2] => 'hidden:false,width:200',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][2] => 'hidden:false,width:200,editable:true',				#    didefnikan  berdasarkan urutan kolom 
 			// $var['kolom'][3] => 'hidden:false,width:100',				#    didefnikan  berdasarkan urutan kolom 
 			// 	$var['kolom'][4] => 'editable:true,width:650',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
 		);
@@ -55,6 +55,8 @@ class Master extends CI_Controller {
 		$var['button_nav'] = array(									#--- Tambahkan tombol perintah di jqgrid
 			'add' => true,												#    tersedia tombol add, reload, cari dan delete
 			'reload' => true,											#    cara mengaktifkannya dengan memberi nilai TRUE pada key variabel array
+			'delete' => true,
+			'cari' => true,
 		);
 		$var['join'] = array(											  #--- mengaktifkan fungsi join table di jqgird
 			'id_i_guru'	=> array( 'i_guru-idid'	=>	'nama' ), #	contoh :
@@ -98,16 +100,16 @@ class Master extends CI_Controller {
 		$var['kolom'] = $this->_getkolom($var['table']);				#--- memanggil private fungsi _getkolom. lihat fungsi _getkolom utk ket lebih lanjut
 		$var['jqgrid_at_name'] = array(								#--- mendefinisikan nama kolom pada jqgrid
 				$var['kolom'][1] => 'ID',								#    didefnikan  berdasarkan urutan kolom 
-				$var['kolom'][2] => 'Kode',							#    misalkan kolom[1] namanya ID, kolom[2] namanya Nama, dst
-				$var['kolom'][3] => 'Jenis Bangunan',												
+				$var['kolom'][2] => 'Paramter',							#    misalkan kolom[1] namanya ID, kolom[2] namanya Nama, dst
+				$var['kolom'][3] => 'Bobot',												
 				// $var['kolom'][4] => 'Satuan',												
 				// $var['kolom'][5] => 'harga_satuan',												
 				// $var['kolom'][6] => 'keterangan',												
 		);
 		$var['jqgrid_at'] = array(										#--- mendefinisikan attribut kolom pada jqgrid
 			$var['kolom'][1] => 'hidden:false,width:20',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][2] => 'hidden:false,width:70',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][3] => 'hidden:false,width:400',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][2] => 'hidden:false,width:250',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][3] => 'hidden:false,width:100',				#    didefnikan  berdasarkan urutan kolom 
 			// $var['kolom'][4] => 'editable:true,width:50',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya 
 			// $var['kolom'][5] => 'editable:true,width:100',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
 			// $var['kolom'][6] => 'editable:true,width:400',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
@@ -117,6 +119,8 @@ class Master extends CI_Controller {
 		$var['button_nav'] = array(									#--- Tambahkan tombol perintah di jqgrid
 			'add' => true,												#    tersedia tombol add, reload, cari dan delete
 			'reload' => true,											#    cara mengaktifkannya dengan memberi nilai TRUE pada key variabel array
+			'delete' => true,
+			'cari' => true,
 		);
 		$var['join'] = array(											  #--- mengaktifkan fungsi join table di jqgird
 			'id_i_guru'	=> array( 'i_guru-idid'	=>	'nama' ), #	contoh :
@@ -139,7 +143,7 @@ class Master extends CI_Controller {
 		$var['htmllang'] = "id";
 		$var['metadesc'] = "";
 		$var['metakeyword'] = "";
-		$var['title'] = "Master Klasifikasi";
+		$var['title'] = "Master Fungsi";
 		$var['body_class'] = "no-skin";
 		$var['mmaster_data'] = "active open";
 		$var['mfungsi'] = "active";
@@ -159,17 +163,18 @@ class Master extends CI_Controller {
 		$var['kolom'] = $this->_getkolom($var['table']);				#--- memanggil private fungsi _getkolom. lihat fungsi _getkolom utk ket lebih lanjut
 		$var['jqgrid_at_name'] = array(								#--- mendefinisikan nama kolom pada jqgrid
 				$var['kolom'][1] => 'ID',								#    didefnikan  berdasarkan urutan kolom 
-				$var['kolom'][2] => 'Kode',							#    misalkan kolom[1] namanya ID, kolom[2] namanya Nama, dst
-				$var['kolom'][3] => 'Jenis Bangunan',												
+				$var['kolom'][2] => 'Paramter',							#    misalkan kolom[1] namanya ID, kolom[2] namanya Nama, dst
+				$var['kolom'][3] => 'Indeks',												
+				$var['kolom'][4] => 'Keterangan',												
 				// $var['kolom'][4] => 'Satuan',												
 				// $var['kolom'][5] => 'harga_satuan',												
 				// $var['kolom'][6] => 'keterangan',												
 		);
 		$var['jqgrid_at'] = array(										#--- mendefinisikan attribut kolom pada jqgrid
 			$var['kolom'][1] => 'hidden:false,width:20',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][2] => 'hidden:false,width:70',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][3] => 'hidden:false,width:400',				#    didefnikan  berdasarkan urutan kolom 
-			// $var['kolom'][4] => 'editable:true,width:50',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya 
+			$var['kolom'][2] => 'editable:true,width:150',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][3] => 'editable:true,width:50',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][4] => 'editable:true,width:600',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya 
 			// $var['kolom'][5] => 'editable:true,width:100',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
 			// $var['kolom'][6] => 'editable:true,width:400',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
 		);
@@ -178,6 +183,8 @@ class Master extends CI_Controller {
 		$var['button_nav'] = array(									#--- Tambahkan tombol perintah di jqgrid
 			'add' => true,												#    tersedia tombol add, reload, cari dan delete
 			'reload' => true,											#    cara mengaktifkannya dengan memberi nilai TRUE pada key variabel array
+			'delete' => true,
+			'cari' => true,
 		);
 		$var['join'] = array(											  #--- mengaktifkan fungsi join table di jqgird
 			'id_i_guru'	=> array( 'i_guru-idid'	=>	'nama' ), #	contoh :
@@ -239,6 +246,8 @@ class Master extends CI_Controller {
 		$var['button_nav'] = array(									#--- Tambahkan tombol perintah di jqgrid
 			'add' => true,												#    tersedia tombol add, reload, cari dan delete
 			'reload' => true,											#    cara mengaktifkannya dengan memberi nilai TRUE pada key variabel array
+			'delete' => true,
+			'cari' => true,
 		);
 		$var['join'] = array(											  #--- mengaktifkan fungsi join table di jqgird
 			'id_i_guru'	=> array( 'i_guru-idid'	=>	'nama' ), #	contoh :
@@ -282,17 +291,17 @@ class Master extends CI_Controller {
 		$var['kolom'] = $this->_getkolom($var['table']);				#--- memanggil private fungsi _getkolom. lihat fungsi _getkolom utk ket lebih lanjut
 		$var['jqgrid_at_name'] = array(								#--- mendefinisikan nama kolom pada jqgrid
 				$var['kolom'][1] => 'ID',								#    didefnikan  berdasarkan urutan kolom 
-				$var['kolom'][2] => 'Kode',							#    misalkan kolom[1] namanya ID, kolom[2] namanya Nama, dst
-				$var['kolom'][3] => 'Jenis Bangunan',												
-				$var['kolom'][4] => 'Satuan',												
+				$var['kolom'][2] => 'Paramter',							#    misalkan kolom[1] namanya ID, kolom[2] namanya Nama, dst
+				$var['kolom'][3] => 'Indeks',												
+				$var['kolom'][4] => 'Keterangan',												
 				// $var['kolom'][5] => 'harga_satuan',												
 				// $var['kolom'][6] => 'keterangan',												
 		);
 		$var['jqgrid_at'] = array(										#--- mendefinisikan attribut kolom pada jqgrid
 			$var['kolom'][1] => 'hidden:false,width:20',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][2] => 'hidden:false,width:70',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][3] => 'hidden:false,width:400',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][4] => 'editable:true,width:50',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya 
+			$var['kolom'][2] => 'hidden:false,width:200',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][3] => 'hidden:false,width:40',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][4] => 'editable:true,width:450',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya 
 			// $var['kolom'][5] => 'editable:true,width:100',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
 			// $var['kolom'][6] => 'editable:true,width:400',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
 		);
@@ -301,6 +310,8 @@ class Master extends CI_Controller {
 		$var['button_nav'] = array(									#--- Tambahkan tombol perintah di jqgrid
 			'add' => true,												#    tersedia tombol add, reload, cari dan delete
 			'reload' => true,											#    cara mengaktifkannya dengan memberi nilai TRUE pada key variabel array
+			'delete' => true,
+			'cari' => true,
 		);
 		$var['join'] = array(											  #--- mengaktifkan fungsi join table di jqgird
 			'id_i_guru'	=> array( 'i_guru-idid'	=>	'nama' ), #	contoh :

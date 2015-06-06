@@ -1,6 +1,6 @@
 					<?php $this->load->view("interface/inf_navbar"); ?>
 
-<div class="template_standalone">
+
 <div class="main-container" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
@@ -15,5 +15,4 @@
 					<?php $this->load->view("interface/inf_".$isi); ?>
 				<?php endforeach; ?>
 				<?php endif; ?>
-</div>
 </div>

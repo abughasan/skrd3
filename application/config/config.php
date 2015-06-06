@@ -17,7 +17,7 @@
 $config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
 $config['base_url'] .= "://".$_SERVER['HTTP_HOST'];
 $config['base_url'] .= preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME'])).'/';
-$config['base_assets'] = 'http://localhost/assets/';
+$config['base_assets'] = 'http://'.$_SERVER['HTTP_HOST'].'/assets/';
 
 /*
 |--------------------------------------------------------------------------
@@ -227,7 +227,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'skrd2_bangkamedia';
 
 /*
 |--------------------------------------------------------------------------

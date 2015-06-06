@@ -1,5 +1,4 @@
 <script>
-
 	function gridReload(){
 	<?php 
 		foreach ($kolom as $kol){
@@ -8,7 +7,7 @@
 	?>
 		
 		jQuery("#grid-table").jqGrid('setGridParam',
-		{url:"<?php echo base_url(); ?>index.php/<?=$this->uri->segment(1); ?>/index/load/?<?php foreach($kolom as $kol){ 
+		{url:"<?php echo base_url(); ?><?=$this->uri->segment(1); ?>/<?=$this->uri->segment(2); ?>/load/?<?php foreach($kolom as $kol){ 
 		?>&<?=$kol;?>="+<?=$kol;?>+"<?php } ?>",page:1}).trigger("reloadGrid");
 		
 	}
@@ -62,7 +61,7 @@ $(document).ready(function(){
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
 				//resize to fit page size
-				$(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
+				
 				$(window).on('resize.jqGrid', function () {
 					$(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
 			    })
@@ -92,10 +91,12 @@ $(function () {
 		((isset($jqgrid_at)) ? print colmodel($table,$jqgrid_at) : '');
 		?>
         pager: "#grid-pager",
-        rowNum: 10,
+        rowNum: 5,
 		rowList:[5,10,25,50,100],
 		height: 250,
-		editurl: "<?php echo base_url(); ?>index.php/<?=$this->uri->segment(1); ?>/index/update/",
+		// width: '100%',
+		autowidth: true,
+		editurl: "<?php echo base_url(); ?><?=$this->uri->segment(1); ?>/<?=$this->uri->segment(2); ?>/update/",
 		toppager:true,
 		cellEdit:true,
 		cellsubmit : 'remote',
@@ -116,7 +117,7 @@ $(function () {
 							enableTooltips(table);
 						}, 0);
 					},
-		cellurl: "<?php echo base_url(); ?>index.php/<?=$this->uri->segment(1); ?>/index/update/",
+		cellurl: "<?php echo base_url(); ?><?=$this->uri->segment(1); ?>/<?=$this->uri->segment(2); ?>/update/",
 		<?php if( isset($sortname) ): ?>
 			sortname: '<?=$sortname?>',
 		<?php endif; ?>
@@ -142,7 +143,7 @@ $(function () {
 	<?php if (ISSET($button_nav['add']) && $button_nav['add']==TRUE): ?>
 	.navButtonAdd('#grid-table_toppager',{
 	   caption:"<span class='bplus'>Data</span>", 
-	   buttonicon:"ui-icon-plus bplus", 
+	   buttonicon:"ace-icon fa fa-plus-circle purple bplus", 
 	   onClickButton: function(){ 
 			parameters =
 			{
@@ -169,7 +170,7 @@ $(function () {
 	})
 	.navButtonAdd('#grid-table_toppager',{
 	   caption:"<span class='bcancel'>Cancel</span>", 
-	   buttonicon:"ui-icon-cancel bcancel", 
+	   buttonicon:"ace-icon fa fa-close red bcancel", 
 	   onClickButton: function(){ 
 			jQuery("#grid-table").jqGrid('restoreRow',"new_row");
 			$(".bcancel").hide('fadeout');
@@ -180,7 +181,7 @@ $(function () {
 	<?php if (ISSET($button_nav['reload']) && $button_nav['reload']==TRUE): ?>
 	.navButtonAdd('#grid-table_toppager',{
 		caption:"<span class='brefresh'>Reload</span>",
-		buttonicon:"ui-icon-refresh",
+		buttonicon:"ace-icon fa fa-refresh green",
 		onClickButton: function(){
 			var grid = $("#grid-table"); grid.trigger("reloadGrid");
 		}
@@ -189,7 +190,7 @@ $(function () {
 	<?php if (ISSET($button_nav['cari']) && $button_nav['cari']==TRUE): ?>
 	.navButtonAdd('#grid-table_toppager',{
 		caption:"<span class='bcari'>Cari</span>",
-		buttonicon:"ui-icon-search",
+		buttonicon:"ace-icon fa fa-search orange",
 		onClickButton: function(){
 			$("#grid-table")[0].toggleToolbar();
 		}
@@ -198,7 +199,7 @@ $(function () {
 	<?php if (ISSET($button_nav['delete']) && $button_nav['delete']==TRUE): ?>
 	.navButtonAdd('#grid-table_toppager',{
 		caption:"<span class='btrash'>Delete</span>",
-		buttonicon:"ui-icon-trash",
+		buttonicon:"ace-icon fa fa-trash-o red",
 		onClickButton: function(){
 			var rowid = $('#grid-table').jqGrid("getGridParam", "selrow");
 			if (rowid === null) {
