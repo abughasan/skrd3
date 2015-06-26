@@ -228,12 +228,12 @@ class Transaksi extends CI_Controller {
 		endif;
 	}
 	
-	function simpanIndeks()
-	{	
+	function simpanILP($ilp)
+	{
 		$sess_transheader = $this->session->userdata('idtransheader');
-		$transheader['index_lingpem'] = $_POST['ilp_fix'];
-		$idmlin_arr = explode("*",$_POST['lingkupsubdet']);
+		$idmlin_arr = explode("*",$ilp);
 		$transheader['idmlingkupsubdet'] = $idmlin_arr[0];
+		$transheader['index_lingpem'] = $idmlin_arr[1];
 		$transwhere['id'] = $sess_transheader;
 		
 		$update = $this->app_model->updateData('transheaderskr',$transheader,$transwhere);
@@ -243,7 +243,10 @@ class Transaksi extends CI_Controller {
 		else:
 			echo "Tidak ada perubahan transaksi header";
 		endif;
-		
+	}
+	
+	function simpanIndeks()
+	{	
 		/** FUNGSI SIMPAN INDEKS DEPRECATED DI STEP INI
 		
 		$cek = $this->app_model->getSelectedData('transintegritas',array('idheaderskr'=>$sess_transheader));
