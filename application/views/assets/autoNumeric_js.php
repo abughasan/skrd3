@@ -1,0 +1,1 @@
+<script src="<?=$this->config->item('base_assets')?>jqplugins/autoNumeric.js"></script>

@@ -135,10 +135,7 @@
 													</div>
 
 													<div class="step-pane" data-step="4">
-														<div class="center">
-															<h3 class="green">Congrats!</h3>
-															Your product is ready to ship! Click finish to continue!
-														</div>
+														<?=$this->load->view('interface/inf_tr_wiz_4')?>
 													</div>
 												</div>
 											</div>
@@ -230,7 +227,7 @@
 													Cancel
 												</button>
 											</div>
-										</div>
+										</div
 									</div>
 								</div><!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->

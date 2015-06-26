@@ -47,10 +47,16 @@
 
 $active_group = 'default';
 $active_record = TRUE;
-
+/** DB REMOTE 
 $db['default']['hostname'] = '101.255.71.22:8006';
 $db['default']['username'] = 'alimuddin';
 $db['default']['password'] = 'Bismillah0(';
+DB REMOTE **/
+
+$db['default']['hostname'] = '127.0.0.1';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+
 $db['default']['database'] = 'ksr';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

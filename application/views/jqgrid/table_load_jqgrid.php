@@ -37,7 +37,7 @@ for($i=1;$i<=count($kolom);$i++){
 $where = "WHERE 1=1";
 for($i=1;$i<=count($kolom);$i++){
 if(${$kolom[$i]}!='')
-	$where.= " AND ".$kolom[$i]." LIKE '".${$kolom[$i]}."%'";
+	$where.= " AND ".$kolom[$i]." LIKE '%".${$kolom[$i]}."%'";
 }
 // $cfilter = 
 ((ISSET($_GET['filter'])) ? $where.= " AND ".$_GET['filter']." = '".$_GET[$_GET['filter']."_f"]."' " : '' );

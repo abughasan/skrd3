@@ -37,14 +37,14 @@
 															
 															<div class="space-2"></div>
 
-															<div class="form-group propinsi-group">
-																<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="propinsi">Propinsi</label>
+															<div class="form-group desa-group">
+																<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="desa">Propinsi</label>
 
 																<div class="col-xs-12 col-sm-9">
-																	<select id="propinsi" name="propinsi" class="select2" data-placeholder="Pilih Propinsi...">
+																	<select id="desa" name="desa" class="select2" data-placeholder="Pilih Desa...">
 																	<option value="">&nbsp;</option>
-																	<?php foreach($propinsi as $row): ?>
-																		<option value="<?=$row->propinsi_id?>"><?=$row->propinsi_name?></option>
+																	<?php foreach($desa as $row): ?>
+																		<option value="<?=$row->kecamatan_id?>*<?=$row->desa_id?>"><?=$row->desa_name?></option>
 																	<?php endforeach; ?>
 																	</select>
 																</div>

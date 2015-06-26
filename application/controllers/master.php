@@ -235,8 +235,8 @@ class Master extends CI_Controller {
 		);
 		$var['jqgrid_at'] = array(										#--- mendefinisikan attribut kolom pada jqgrid
 			$var['kolom'][1] => 'hidden:false,width:20',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][2] => 'hidden:false,width:70',				#    didefnikan  berdasarkan urutan kolom 
-			$var['kolom'][3] => 'hidden:false,width:400',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][2] => 'editable:true,width:70',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][3] => 'editable:true,width:400',				#    didefnikan  berdasarkan urutan kolom 
 			$var['kolom'][4] => 'editable:true,width:50',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya 
 			$var['kolom'][5] => 'editable:true,width:100',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
 			$var['kolom'][6] => 'editable:true,width:400',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
