@@ -1,6 +1,6 @@
 <h3 class="lighter block green">1.1 INDEKS LINGKUP PEMBANGUNAN</h3>
 														
-
+<form class="form-horizontal" id="" method="get">
 															<div class="form-group ilp-group">
 																<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ilp">Lingkup Bangunan</label>
 
@@ -47,7 +47,8 @@
 															</div>
 
 															<div class="hr hr-dotted"></div>
-
+</form>
+<form class="form-horizontal" id="form_integrasi_1" method="get">
 <div class="widget-box integrasi_1">
 												<div class="widget-header">
 													<h4 class="widget-title">Indeks Integrasi (1)</h4>
@@ -67,7 +68,7 @@
 
 <h3 class="lighter block green">1.2 INDEKS INTEGRITAS</h3>
 <h3 class="lighter block blue">1.2.1 INDEKS FUNGSI BANGUNAN GEDUNG</h3>
-<form class="form-horizontal" id="form_integrasi_1" method="get">
+
 
 															<div class="form-group ilp-group">
 																<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ifbg">Fungsi Bangunan</label>
@@ -226,9 +227,10 @@
 																</div>
 															</div>
 <!-- widget box-->
-														</form>
+														
 													</div>
 </div>
 
-</div>															
+</div>							
+</form>								
 <div id="canvas_tambah"></div>

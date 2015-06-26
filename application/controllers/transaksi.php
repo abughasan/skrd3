@@ -178,15 +178,10 @@ class Transaksi extends CI_Controller {
 		$tabel_ke = $_POST['tabel_ke'];
 		$i=count($_POST['param']);
 		$sess_transheader = $this->session->userdata('idtransheader');
-		if ($tabel_ke > 1):
-			$cek2 = $this->app_model->getSelectedData('transklasifikasi',array('idheaderskr'=>$sess_transheader,'tabel_ke'=>$tabel_ke));
-			$cek = $this->app_model->manualQuery('select distinct(tabel_ke) from transklasifikasi where idheaderskr = {$sess_transheader}');
-			
-		else:
-			$cek = $this->app_model->getSelectedData('transklasifikasi',array('idheaderskr'=>$sess_transheader));
-		endif;
+		$cek = $this->app_model->getSelectedData('transklasifikasi',array('idheaderskr'=>$sess_transheader));
+		$cek_num_table = $this->app_model->manualQuery("select distinct(tabel_ke) from transklasifikasi where idheaderskr = {$sess_transheader}")->num_rows();
 		
-		if ($cek->num_rows()>0):
+		if ($tabel_ke <= $cek_num_table && $cek->num_rows()>0):
 		
 		$update_count = 0;
 		for($a=0;$a<$i;$a++)
