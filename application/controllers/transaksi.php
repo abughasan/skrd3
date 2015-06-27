@@ -247,49 +247,96 @@ class Transaksi extends CI_Controller {
 	
 	function simpanIndeks()
 	{	
-		/** FUNGSI SIMPAN INDEKS DEPRECATED DI STEP INI
-		
+		$tabel_ke = $_POST['tabel_ke'];
+		$sess_transheader = $this->session->userdata('idtransheader');
 		$cek = $this->app_model->getSelectedData('transintegritas',array('idheaderskr'=>$sess_transheader));
+		$cek_num_table = $this->app_model->manualQuery("select distinct(tabel_ke) from transklasifikasi where idheaderskr = {$sess_transheader}")->num_rows();
 		
-		if($cek->num_rows>0):
+		if ($tabel_ke <=1 && $tabel_ke != 0):
 		
-		$data['idmfungsi'] = $_POST['ifbg'];
-		$data['indeks_fungsi'] = $_POST['if_fix'];
-		$data['total_indeks_klas'] = $_POST['iklas_fix'];
-		$data['idmwaktuguna'] = $_POST['iwp'];
-		$data['indeks_waktuguna'] = $_POST['iwg_fix'];
-		$data['indeks_integritas'] = $_POST['indeks_integritas'];
-		$where['idheaderskr'] = $transwhere['id'];
+			if ($tabel_ke <= $cek_num_table && $cek->num_rows()>0):
+			
+			$data['idmfungsi'] = $_POST['ifbg'];
+			$data['indeks_fungsi'] = $_POST['if_fix'];
+			$data['total_indeks_klas'] = $_POST['iklas_fix'];
+			$data['idmwaktuguna'] = $_POST['iwp'];
+			$data['indeks_waktuguna'] = $_POST['iwg_fix'];
+			$data['indeks_integritas'] = $_POST['indeks_integritas'];
+			$data['tabel_ke'] = $_POST['tabel_ke'];
+			$where['idheaderskr'] = $sess_transheader;
+			
+			$insert = $this->app_model->updateData('transintegritas',$data,$where);
+			
+			if($this->db->affected_rows()>0):
+				echo "\nIndeks Integritas terupdate";	
+			else:
+				echo "\nTidak ada perubahan indeks integritas";
+			endif;
+			
+			else:
+			
+			$data['idmfungsi'] = $_POST['ifbg'];
+			$data['indeks_fungsi'] = $_POST['if_fix'];
+			$data['total_indeks_klas'] = $_POST['iklas_fix'];
+			$data['idmwaktuguna'] = $_POST['iwp'];
+			$data['indeks_waktuguna'] = $_POST['iwg_fix'];
+			$data['indeks_integritas'] = $_POST['indeks_integritas'];
+			$data['tabel_ke'] = $_POST['tabel_ke'];
+			$data['idheaderskr'] = $sess_transheader;
+			
+			$insert = $this->app_model->insertData('transintegritas',$data);
+			
+			if($this->db->affected_rows()>0):
+				echo "\nIndeks Integritas tersimpan";	
+			else:
+				echo "\nGAGAL menyimpan indeks integritas. Periksa koneksi internet / Hubungi IT administrator anda";
+			endif;
+			
+			endif;
 		
-		$insert = $this->app_model->updateData('transintegritas',$data,$where);
-		
-		if($this->db->affected_rows()>0):
-			echo "\nIndeks Integritas terupdate";	
 		else:
-			echo "\nTidak ada perubahan indeks integritas";
+			
+			if ($tabel_ke <= $cek_num_table && $cek->num_rows()>0):
+			
+			$data['idmfungsi'] = $_POST['ifbg'];
+			$data['indeks_fungsi'] = $_POST['if_fix'];
+			$data['total_indeks_klas'] = $_POST['iklas_fix'];
+			$data['idmwaktuguna'] = $_POST['iwp'];
+			$data['indeks_waktuguna'] = $_POST['iwg_fix'];
+			$data['indeks_integritas'] = $_POST['indeks_integritas'];
+			$where['idheaderskr'] = $transwhere['id'];
+			
+			$insert = $this->app_model->updateData('transintegritas',$data,$where);
+			
+			if($this->db->affected_rows()>0):
+				echo "\nIndeks Integritas terupdate";	
+			else:
+				echo "\nTidak ada perubahan indeks integritas";
+			endif;
+			
+			else:
+			
+			$data['idmfungsi'] = $_POST['ifbg'];
+			$data['indeks_fungsi'] = $_POST['if_fix'];
+			$data['total_indeks_klas'] = $_POST['iklas_fix'];
+			$data['idmwaktuguna'] = $_POST['iwp'];
+			$data['indeks_waktuguna'] = $_POST['iwg_fix'];
+			$data['indeks_integritas'] = $_POST['indeks_integritas'];
+			$data['idheaderskr'] = $transwhere['id'];
+			
+			$insert = $this->app_model->insertData('transintegritas',$data);
+			
+			if($this->db->affected_rows()>0):
+				echo "\nIndeks Integritas tersimpan";	
+			else:
+				echo "\nGAGAL menyimpan indeks integritas. Periksa koneksi internet / Hubungi IT administrator anda";
+			endif;
+			
+			endif;
+
+		
+		
 		endif;
-		
-		else:
-		
-		$data['idmfungsi'] = $_POST['ifbg'];
-		$data['indeks_fungsi'] = $_POST['if_fix'];
-		$data['total_indeks_klas'] = $_POST['iklas_fix'];
-		$data['idmwaktuguna'] = $_POST['iwp'];
-		$data['indeks_waktuguna'] = $_POST['iwg_fix'];
-		$data['indeks_integritas'] = $_POST['indeks_integritas'];
-		$data['idheaderskr'] = $transwhere['id'];
-		
-		$insert = $this->app_model->insertData('transintegritas',$data);
-		
-		if($this->db->affected_rows()>0):
-			echo "\nIndeks Integritas tersimpan";	
-		else:
-			echo "\nGAGAL menyimpan indeks integritas. Periksa koneksi internet / Hubungi IT administrator anda";
-		endif;
-		
-		endif;
-		
-		FUNGSI SIMPAN INDEKS DEPRECATED DI STEP INI **/
 	}
 	function simpanTransSKRD() 
 	{

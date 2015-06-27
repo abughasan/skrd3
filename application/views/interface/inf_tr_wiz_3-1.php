@@ -20,7 +20,7 @@
 														<h3 class="lighter block green">1.2 INDEKS INTEGRITAS</h3>
 <h3 class="lighter block blue">1.2.1 INDEKS FUNGSI BANGUNAN GEDUNG</h3>
 <form class="form-horizontal" id="form_integrasi_<?=$angka?>" method="get">
-
+<input type="hidden" value="<?=$angka?>" name="tabel_ke"/>
 															<div class="form-group ilp-group">
 																<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ifbg<?=$angka?>">Fungsi Bangunan</label>
 

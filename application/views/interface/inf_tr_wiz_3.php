@@ -48,7 +48,7 @@
 
 															<div class="hr hr-dotted"></div>
 </form>
-<form class="form-horizontal" id="form_integrasi_1" method="get">
+<form class="form-horizontal" id="form_integrasi_1" method="get"> <input type="hidden" value="1" name="tabel_ke"/>
 <div class="widget-box integrasi_1">
 												<div class="widget-header">
 													<h4 class="widget-title">Indeks Integrasi (1)</h4>
