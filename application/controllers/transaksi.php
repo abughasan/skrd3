@@ -341,6 +341,24 @@ class Transaksi extends CI_Controller {
 		endif;
 	}
 	
+	function deleteIntegrasinKlas($tabel_ke)
+	{
+		$sess_transheader = $this->session->userdata('idtransheader');
+		$where['tabel_ke'] = $tabel_ke;
+		$where['idheaderskr'] = $sess_transheader;
+		$delete_klas = $this->app_model->deleteData('transklasifikasi',$where);
+		if($this->db->affected_rows()>0):
+				echo "Klasifikasi tabel_ke {$tabel_ke} terhapus";	
+			else:
+				echo "\nGAGAL menghapus. Periksa koneksi internet / Hubungi IT administrator anda";
+			endif;
+		$delete_int = $this->app_model->deleteData('transintegritas',$where);
+		if($this->db->affected_rows()>0):
+				echo "Integrasi tabel_ke {$tabel_ke} terhapus";	
+			else:
+				echo "\nGAGAL menyimpan indeks integritas. Periksa koneksi internet / Hubungi IT administrator anda";
+			endif;
+	}
 	
 	
 	function simpanTransSKRD() 
