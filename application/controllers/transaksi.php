@@ -250,9 +250,9 @@ class Transaksi extends CI_Controller {
 		$tabel_ke = $_POST['tabel_ke'];
 		$sess_transheader = $this->session->userdata('idtransheader');
 		$cek = $this->app_model->getSelectedData('transintegritas',array('idheaderskr'=>$sess_transheader));
-		$cek_num_table = $this->app_model->manualQuery("select distinct(tabel_ke) from transklasifikasi where idheaderskr = {$sess_transheader}")->num_rows();
+		$cek_num_table = $this->app_model->manualQuery("select distinct(tabel_ke) from transintegritas where idheaderskr = {$sess_transheader}")->num_rows();
 		
-		if ($tabel_ke <=1 && $tabel_ke != 0):
+		if ($tabel_ke == 1):
 		
 			if ($tabel_ke <= $cek_num_table && $cek->num_rows()>0):
 			
@@ -298,13 +298,14 @@ class Transaksi extends CI_Controller {
 			
 			if ($tabel_ke <= $cek_num_table && $cek->num_rows()>0):
 			
-			$data['idmfungsi'] = $_POST['ifbg'];
-			$data['indeks_fungsi'] = $_POST['if_fix'];
-			$data['total_indeks_klas'] = $_POST['iklas_fix'];
-			$data['idmwaktuguna'] = $_POST['iwp'];
-			$data['indeks_waktuguna'] = $_POST['iwg_fix'];
-			$data['indeks_integritas'] = $_POST['indeks_integritas'];
-			$where['idheaderskr'] = $transwhere['id'];
+			$data['idmfungsi'] = $_POST['ifbg'.$tabel_ke];
+			$data['indeks_fungsi'] = $_POST['if_fix_'.$tabel_ke];
+			$data['total_indeks_klas'] = $_POST['iklas_fix_'.$tabel_ke];
+			$data['idmwaktuguna'] = $_POST['iwp'.$tabel_ke];
+			$data['indeks_waktuguna'] = $_POST['iwg_fix_'.$tabel_ke];
+			$data['indeks_integritas'] = $_POST['indeks_integritas_'.$tabel_ke];
+			$where['tabel_ke'] = $tabel_ke;
+			$where['idheaderskr'] = $sess_transheader;
 			
 			$insert = $this->app_model->updateData('transintegritas',$data,$where);
 			
@@ -316,13 +317,14 @@ class Transaksi extends CI_Controller {
 			
 			else:
 			
-			$data['idmfungsi'] = $_POST['ifbg'];
-			$data['indeks_fungsi'] = $_POST['if_fix'];
-			$data['total_indeks_klas'] = $_POST['iklas_fix'];
-			$data['idmwaktuguna'] = $_POST['iwp'];
-			$data['indeks_waktuguna'] = $_POST['iwg_fix'];
-			$data['indeks_integritas'] = $_POST['indeks_integritas'];
-			$data['idheaderskr'] = $transwhere['id'];
+			$data['idmfungsi'] = $_POST['ifbg'.$tabel_ke];
+			$data['indeks_fungsi'] = $_POST['if_fix_'.$tabel_ke];
+			$data['total_indeks_klas'] = $_POST['iklas_fix_'.$tabel_ke];
+			$data['idmwaktuguna'] = $_POST['iwp'.$tabel_ke];
+			$data['indeks_waktuguna'] = $_POST['iwg_fix_'.$tabel_ke];
+			$data['indeks_integritas'] = $_POST['indeks_integritas_'.$tabel_ke];
+			$data['idheaderskr'] = $sess_transheader;
+			$data['tabel_ke'] = $tabel_ke;
 			
 			$insert = $this->app_model->insertData('transintegritas',$data);
 			
@@ -338,6 +340,9 @@ class Transaksi extends CI_Controller {
 		
 		endif;
 	}
+	
+	
+	
 	function simpanTransSKRD() 
 	{
 		

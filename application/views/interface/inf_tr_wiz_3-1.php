@@ -58,7 +58,7 @@
 
 <h3 class="lighter block blue">1.2.2 INDEKS KLASIFIKASI</h3>
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="if_fix">Input Klasifikasi Bangunan:</label>
+																<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="iklas_fix-de">Input Klasifikasi Bangunan:</label>
 																
 																<div class="col-xs-12 col-sm-10">
 																	<div class="clearfix">
@@ -246,6 +246,14 @@
 				$('#btn_integritas<?=$angka?>').click(function(){
 					var akumulasi = parseFloat($('#if_fix2_<?=$angka?>').val()) * parseFloat($('#iklas_fix_hide<?=$angka?>').val()) * parseFloat($('#iwg_fix2_<?=$angka?>').val());
 					$('#indeks_integritas_<?=$angka?>').val((Math.round(akumulasi.toFixed(3) * 100) / 100).toFixed(2));
+					var index_i = $('#form_integrasi_<?=$angka?>').serialize();
+					$.ajax({
+						type: 'post', data: index_i,
+								url: "<?= base_url() ?>transaksi/simpanIndeks/", cache:false,
+								success: function(msg){
+									alert(msg);
+								}
+					});
 				})
 	function show_btn_integrasi(angka)
 		{
