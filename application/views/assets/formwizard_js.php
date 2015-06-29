@@ -469,9 +469,11 @@
 								}
 					});
 				})
+				
+				
 				$('#btn_tambah_skrd').on('click',function(){
 					var nomer = parseInt($('.no_skrd:last').text()) + 1;
-					$("					<tr id='skrd_row"+nomer+"' class='skrd_row'>																			<td class='no_skrd' id='no_skrd_1'>"+nomer+"</td>																			<td><select class='kode_skrd' id='kode_skrd"+nomer+"' onchange='kodeskrd_change("+nomer+")' name='kode_skrd'>																					<option value=''>Select</option>																					<?php foreach($hargasatuan->result() as $row): ?>																						<option value='<?=$row->kode?>*<?=$row->idmhargasatuan?>*<?=$row->harga_satuan?>'><?=$row->kode?>-<?=$row->jenis_bangunan?> </option>																					<?php endforeach; ?>																				</select>																			</td>																			<td><input size='30' id='unit_bangunan"+nomer+"' name='unit_bangunan' type='text' class=''></td>																			<td id='tdluas"+nomer+"'><input data-a-dec=',' data-a-sep='.' id='luas"+nomer+"' size='7' name='luas' type='text' onblur='hitungskrdblur("+nomer+")' class=''></td>			<td id='i_integrasi"+nomer+"' class='skrd_integrasi'>i integrasi</td><td class='skrd_lingpem' id='i_lingpemb"+nomer+"'>i ling pemb</td>						<td id='skrd_satuan_"+nomer+"'>harga satuan</td>																			<td id='tdjmlunit"+nomer+"'><input id='jmlunit"+nomer+"' size='5' name='jmlunit' value=1 onblur='hitungskrdblur("+nomer+")' type='text' class=''></td>																			<td><input id='jumlah_skrd"+nomer+"' size='15' name='jumlah_skrd' type='text' class='jumlah_skrd'></td>	<td><span onclick='hapusskrd("+nomer+")' class='hapusskrd ui-icon ace-icon fa fa-trash-o red' style='cursor:pointer'></span></td>	</tr>")
+					$("					<tr id='skrd_row"+nomer+"' class='skrd_row'>																			<td class='no_skrd' id='no_skrd_1'>"+nomer+"</td>																			<td><select class='kode_skrd' id='kode_skrd"+nomer+"' onchange='kodeskrd_change("+nomer+")' name='kode_skrd'>																					<option value=''>Select</option>																					<?php foreach($hargasatuan->result() as $row): ?>																						<option value='<?=$row->kode?>*<?=$row->idmhargasatuan?>*<?=$row->harga_satuan?>'><?=$row->kode?>-<?=$row->jenis_bangunan?> </option>																					<?php endforeach; ?>																				</select>																			</td>																			<td><input size='30' id='unit_bangunan"+nomer+"' name='unit_bangunan' type='text' class=''></td>																			<td id='tdluas"+nomer+"'><input data-a-dec=',' data-a-sep='.' id='luas"+nomer+"' size='7' name='luas' type='text' onblur='hitungskrdblur("+nomer+")' class=''></td>			<td id='i_integrasi"+nomer+"' style='cursor:pointer' class='skrd_integrasi' onclick='changeIntegrasi("+nomer+")' title='Klik untuk ganti indeks integrasi' >i integrasi</td><td class='skrd_lingpem' id='i_lingpemb"+nomer+"'>i ling pemb</td>						<td id='skrd_satuan_"+nomer+"'>harga satuan</td>																			<td id='tdjmlunit"+nomer+"'><input id='jmlunit"+nomer+"' size='5' name='jmlunit' value=1 onblur='hitungskrdblur("+nomer+")' type='text' class=''></td>																			<td><input id='jumlah_skrd"+nomer+"' size='15' name='jumlah_skrd' type='text' class='jumlah_skrd'> <span class='refreshskrd ui-icon ace-icon fa fa-refresh green' style='cursor:pointer' onclick='hitungskrdblur("+nomer+")'></span></td>	<td><span onclick='hapusskrd("+nomer+")' class='hapusskrd ui-icon ace-icon fa fa-trash-o red' style='cursor:pointer'></span></td>	</tr>")
 					.insertAfter('table tr:last');
 					autonumskrd(nomer);
 				})
@@ -589,7 +591,7 @@
 				var harga_satuan = $('select#kode_skrd'+nomer).val().split('*')[2];
 				if (kode.slice(0,1) == 1) 
 				{
-					jumlahskrd = parseFloat(luas) * parseFloat($('#indeks_integritas').val()) * parseFloat($('#ilp_fix').val()) * parseFloat(harga_satuan) * parseFloat($('#jmlunit'+nomer).val());
+					jumlahskrd = parseFloat(luas) * parseFloat(tdintegrasi.text()) * parseFloat($('#ilp_fix').val()) * parseFloat(harga_satuan) * parseFloat($('#jmlunit'+nomer).val());
 					$('#jumlah_skrd'+nomer).val(jumlahskrd);
 					tdluas.addClass('danger');
 					tdintegrasi.addClass('danger');
@@ -629,6 +631,17 @@
 							$('#canvas_tambah').append(msg);
 						}
 					})
+			}
+			function changeIntegrasi(nomer)
+			{
+				var value = $('#i_integrasi'+nomer).text();
+				$('#modal-change-integrasi').modal('show');
+				$.ajax({
+					url : "<?= base_url() ?>transaksi/changeIntegrasi/"+nomer, cache: false,
+					success : function(msg){
+						$('#integrasi_option_inmodal').html(msg);
+					}
+				})
 			}
 			
 		</script>

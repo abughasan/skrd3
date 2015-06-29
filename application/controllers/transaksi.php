@@ -419,4 +419,25 @@ class Transaksi extends CI_Controller {
 		
 		endif;
 	}
+	
+	function changeIntegrasi($nomer_row)
+	{
+		$sess_transheader = $this->session->userdata('idtransheader');
+		$where['idheaderskr'] = $sess_transheader;
+		$cek = $this->app_model->getSelectedData('transintegritas',$where);
+		?>
+		<select name="" id="changeIntegrasi">
+			<option value="">-pilih-</option>
+		<?php foreach($cek->result() as $row): ?>
+			<option value="<?=$row->indeks_integritas?>"><?=$row->indeks_integritas?> - indeks ke - <?=$row->tabel_ke?></option>
+		<?php endforeach; ?>
+		</select>
+		<script>
+			$('#changeIntegrasi').change(function(){
+				var new_indeks = $('#changeIntegrasi option:selected').val();
+				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
+			})
+		</script>
+		<?php
+	}
 }
