@@ -42,6 +42,17 @@ class Report extends CI_Controller {
 		
 		//penetapan indeks
 		$var['ilp'] =$this->app_model->getSelectedData('mlingkupsubdet',array('idmlingkupsubdet'=>$var['headerskr']->row()->idmlingkupsubdet));
+		
+		$var['cek_num_tabel'] = $this->app_model->manualQuery("select distinct(tabel_ke) from transintegritas where idheaderskr = {$idheaderskr}");
+		
+		foreach ($var['cek_num_tabel']->result() as $row):
+			// echo $row->tabel_ke;
+			$var['klasifikasi_'.$row->tabel_ke] = $this->app_model->getSelectedData('transklasifikasi',array('idheaderskr'=>$idheaderskr,'tabel_ke'=>$row->tabel_ke));
+			$var['transintegrasi_'.$row->tabel_ke] = $this->app_model->getSelectedData('transintegritas',array('idheaderskr'=>$idheaderskr,'tabel_ke'=>$row->tabel_ke));
+			
+			$var['ifb_'.$row->tabel_ke] =$this->app_model->getSelectedData('mfungsi',array('idmfungsi'=>$var['transintegrasi_'.$row->tabel_ke]->row()->idmfungsi));
+		endforeach;
+		
 		$var['ifb'] =$this->app_model->getSelectedData('mfungsi',array('idmfungsi'=>$var['transintegrasi']->row()->idmfungsi));
 		$var['iwg'] =$this->app_model->getSelectedData('mwaktuguna',array('idmwaktuguna'=>$var['transintegrasi']->row()->idmwaktuguna));
 		

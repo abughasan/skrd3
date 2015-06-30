@@ -120,19 +120,22 @@
 															
 															<div class="space-2"></div>
 															
+													</div>
+													</div>
+				<?php //foreach($cek_num_tabel as $row):	?>
+				<div class="integrasi widget-box" style="padding:10px">	
+													<div class="row">
+													<div class="col-sm-12">
 															<div class="report_skrd">
 																<h4>1.2 INDEKS INTEGRASI</h4>
 																<h5>1.2.1 INDEKS FUNGSI BANGUNAN</h5>
-																Parameter : <?=$ifb->row()->parameter?><br/>
+																Parameter : <?=$ifb_2->row()->parameter?><br/>
 																Indeks : <?=$transintegrasi->row()->indeks_fungsi ?>
 															</div>
 															
 															<div class="space-2"></div>
 													</div>
 													</div>
-													
-													
-													<div class="space"></div>
 													<div class="report_skrd">
 																<h5>1.2.1 INDEKS KLASIFIKASI BANGUNAN</h4>
 													</div>
@@ -195,7 +198,7 @@
 															</div>
 														</div>
 													</div>
-
+				</div>
 													<div class="hr hr8 hr-double hr-dotted"></div>
 
 													<h3> PERHITUNGAN BESARNYA BIAYA RETRIBUSI </H3>
