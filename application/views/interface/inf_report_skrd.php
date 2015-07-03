@@ -21,7 +21,7 @@
 
 												<div class="widget-toolbar no-border invoice-info">
 													<span class="invoice-info-label">No SKR:</span>
-													<span class="red">#<?=$this->session->userdata('idtransheader');?></span>
+													<span class="red">#<?=$idheaderskr;?></span>
 
 													<br />
 													<span class="invoice-info-label">Tanggal:</span>
@@ -122,15 +122,16 @@
 															
 													</div>
 													</div>
-				<?php //foreach($cek_num_tabel as $row):	?>
+				<?php foreach($cek_num_tabel->result() as $row):	?>
 				<div class="integrasi widget-box" style="padding:10px">	
 													<div class="row">
 													<div class="col-sm-12">
 															<div class="report_skrd">
 																<h4>1.2 INDEKS INTEGRASI</h4>
 																<h5>1.2.1 INDEKS FUNGSI BANGUNAN</h5>
-																Parameter : <?=$ifb_2->row()->parameter?><br/>
-																Indeks : <?=$transintegrasi->row()->indeks_fungsi ?>
+																Parameter : <?=${'ifb_'.$row->tabel_ke}->row()->parameter?><br/>
+																Indeks : <?=${'transintegrasi_'.$row->tabel_ke}->row()->indeks_fungsi ?>
+																
 															</div>
 															
 															<div class="space-2"></div>
@@ -157,30 +158,34 @@
 															<tbody>
 															<?php
 															$a=0;
-															foreach ($klasifikasi->result() as $row): 
+															foreach (${'klasifikasi_'.$row->tabel_ke}->result() as $baris): 
 															$a++;
 															?>
 																<tr>
 																	<td class="center"><?=$a?></td>
 
 																	<td>
-																		<?=$row->parameter?>
+																		<?=$baris->parameter?>
 																	</td>
 																	<td class="hidden-xs">
-																		<?=$row->bobot?>
+																		<?=$baris->bobot?>
 																	</td>
 																	<td class="hidden-480">
-																		<?=$row->parametersub?>
+																		<?=$baris->parametersub?>
 																	</td>
 																	<td>
-																		<?=$row->indeks?>
+																		<?=$baris->indeks?>
 																	</td>
 																	<td>
-																		<?=$row->boboxindeks?>
+																		<?=$baris->boboxindeks?>
 																	</td>
 																</tr>
 
 																<?php endforeach; ?>
+																<tr>
+																	<td colspan="5">JUMLAH (INDEKS Klasifikasi)</td>
+																	<td><?=${'transintegrasi_'.$row->tabel_ke}->row()->total_indeks_klas ?></td>
+																</tr>
 															</tbody>
 														</table>
 													</div>
@@ -188,20 +193,64 @@
 													<div class="row">
 														<div class="col-sm-12">
 															<div class="report_skrd">
-																<h5>1.2.3 INDEKS WAKTU GUNA</h5>
-																Parameter : <?=$iwg->row()->parameter?><br/>
-																Indeks : <?=$transintegrasi->row()->indeks_waktuguna ?>
-															</div>
-															<div class="report_skrd">
-																<h5>1.2.4 PERHITUNGAN INDEKS TERINTEGRASI</h5>
-																
+																<h5>1.2.3 INDEKS WAKTU GUNA  </h5>
+																Parameter : <?=@${'iwg_'.$row->tabel_ke}->row()->parameter?><br/>
+																Indeks : <?=${'transintegrasi_'.$row->tabel_ke}->row()->indeks_waktuguna ?>
 															</div>
 														</div>
 													</div>
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="report_skrd">
+																<h5>1.2.4 PERHITUNGAN INDEKS TERINTEGRASI</h5>
+															</div>
+														</div>
+														<div class="col-xs-3"> INDEKS Fungsi</div>
+														<div class="col-xs-1"> X</div>
+														<div class="col-xs-3"> INDEKS Klasifikasi</div>
+														<div class="col-xs-1"> X</div>
+														<div class="col-xs-3"> INDEKS Waktu Guna </div>
+														<div class="col-xs-1"> </div>
+														<!--- NILAI -->
+														<div class="col-xs-3"> <?=${'transintegrasi_'.$row->tabel_ke}->row()->indeks_fungsi ?></div>
+														<div class="col-xs-1"> X</div>
+														<div class="col-xs-3"> <?=${'transintegrasi_'.$row->tabel_ke}->row()->total_indeks_klas ?></div>
+														<div class="col-xs-1"> X</div>
+														<div class="col-xs-2"> <?=${'transintegrasi_'.$row->tabel_ke}->row()->indeks_waktuguna ?></div>
+														<div class="col-xs-2"> = <?=${'transintegrasi_'.$row->tabel_ke}->row()->indeks_integritas ?></div>
+													</div>
 				</div>
+				<?php endforeach; ?>
 													<div class="hr hr8 hr-double hr-dotted"></div>
 
 													<h3> PERHITUNGAN BESARNYA BIAYA RETRIBUSI </H3>
+													
+													<div class="row">
+														<div class="col-sm-12">
+															<table class="table table-striped table-bordered">
+															<thead>
+																<tr>
+																	<th class="center">No</th>
+																	<th>Klasifikasi</th>
+																	<th class="hidden-xs">Bobot</th>
+																	<th class="hidden-480">Parameter</th>
+																	<th>Indeks</th>
+																	<th>Bobot x Indeks</th>
+																</tr>
+															</thead>
+
+															<tbody>
+															<?php
+															$a=0;
+															foreach ($skr->result() as $baris): 
+															$a++;
+															?>
+															
+															<?php endforeach; ?>
+															</tbody>
+															</table>
+														</div>
+													</div>
 													
 													<div class="row">
 														<div class="col-sm-5 pull-right">

@@ -18,7 +18,15 @@ class Report extends CI_Controller {
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","formwizard_js");
 		$var['template'] = "standalone";
 		$var['interface'] = array("menu","report_skrd","footer");
-		$idheaderskr = $this->session->userdata('idtransheader');
+		$idheaderskr2 = $this->uri->segment(3);
+		$idheaderskr1 = $this->session->userdata('idtransheader');
+		if($idheaderskr1):
+			$idheaderskr = $idheaderskr1;
+			$var['idheaderskr'] = $idheaderskr1;
+		else:
+			$idheaderskr = $idheaderskr2;
+			$var['idheaderskr'] = $idheaderskr2;
+		endif;
 		
 		// data dari database
 		//data transaksi utama
@@ -51,10 +59,9 @@ class Report extends CI_Controller {
 			$var['transintegrasi_'.$row->tabel_ke] = $this->app_model->getSelectedData('transintegritas',array('idheaderskr'=>$idheaderskr,'tabel_ke'=>$row->tabel_ke));
 			
 			$var['ifb_'.$row->tabel_ke] =$this->app_model->getSelectedData('mfungsi',array('idmfungsi'=>$var['transintegrasi_'.$row->tabel_ke]->row()->idmfungsi));
+			$var['iwg_'.$row->tabel_ke] =$this->app_model->getSelectedData('mwaktuguna',array('idmwaktuguna'=>$var['transintegrasi_'.$row->tabel_ke]->row()->idmwaktuguna));
+			
 		endforeach;
-		
-		$var['ifb'] =$this->app_model->getSelectedData('mfungsi',array('idmfungsi'=>$var['transintegrasi']->row()->idmfungsi));
-		$var['iwg'] =$this->app_model->getSelectedData('mwaktuguna',array('idmwaktuguna'=>$var['transintegrasi']->row()->idmwaktuguna));
 		
 		
 		$this->load->view('home',$var);
