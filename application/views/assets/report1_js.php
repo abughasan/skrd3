@@ -13,6 +13,10 @@
 					  var terbilang_pem = Math.ceil(total/1000)*1000;
 					  var angkaterbilang = terbilang(terbilang_pem);
 					  $('.terbilang_ret > span').text(angkaterbilang);
+					  var terbilang2_pem = $('td.jkpr:nth-child(2)').autoNumeric('get');
+					  var angkaterbilang2 = terbilang(terbilang2_pem);
+					  $('.terbilang_ret_awal > span').text(angkaterbilang2);
+					  
 				  });
 				  
 				  

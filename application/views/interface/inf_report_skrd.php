@@ -11,7 +11,7 @@
 								<div class="space-6"></div>
 
 								<div class="row">
-									<div class="col-sm-10 col-sm-offset-1">
+									<div class="col-sm-12">
 										<div class="widget-box transparent">
 											<div class="widget-header widget-header-large">
 												<h3 class="widget-title grey lighter">
@@ -47,17 +47,17 @@
 															<div>
 																<ul class="list-unstyled spaced">
 																	<li>
-																		<i class="ace-icon fa fa-caret-right blue"></i>
-																		<?=@$wajibretribusi->row()->nama?> / <?=@$wajibretribusi->row()->pt?>
+																		<i class="ace-icon fa fa-caret-right blue hidden-print"></i>
+																		NAMA : <?=@$wajibretribusi->row()->nama?> / <?=@$wajibretribusi->row()->pt?>
 																	</li>
 
 																	<li>
-																		<i class="ace-icon fa fa-caret-right blue"></i>
-																		<?=@$wajibretribusi->row()->alamat?>
+																		<i class="ace-icon fa fa-caret-right blue hidden-print"></i>
+																		ALAMAT : <?=@$wajibretribusi->row()->alamat?>
 																	</li>
 
 																	<li>
-																		<i class="ace-icon fa fa-caret-right blue"></i>
+																		<i class="ace-icon fa fa-caret-right blue hidden-print"></i>
 																		<?=$propinsi->row()->propinsi_name?>, <?=$kota->row()->kota_name?> <?=$kecamatan->row()->kecamatan_name?> <?=@$desa->row()->desa_name?>
 																	</li>
 
@@ -77,21 +77,19 @@
 															<div>
 																<ul class="list-unstyled  spaced">
 																	<li>
-																		<i class="ace-icon fa fa-caret-right green"></i>
+																		<i class="ace-icon fa fa-caret-right green hidden-print"></i>
 																		Fungsi Bangunan : <?=$fungsi->row()->parameter?> (<?=$bangunan->row()->jenis_bangunan?>)
 																	</li>
 
 																	<li>
-																		<i class="ace-icon fa fa-caret-right green"></i>
+																		<i class="ace-icon fa fa-caret-right green hidden-print"></i>
 																		Lokasi : <?=$bangunan->row()->lokasi?>
 																	</li>
 
 																	<li>
-																		<i class="ace-icon fa fa-caret-right green"></i>
+																		<i class="ace-icon fa fa-caret-right green hidden-print"></i>
 																		<?=$kecamatan_b->row()->kecamatan_name?> <?=@$desa_b->row()->desa_name?>
 																	</li>
-
-																	<li class="divider"></li>
 
 																	
 																</ul>
@@ -100,7 +98,7 @@
 														
 													</div><!-- /.row -->
 													
-													<div class="hr hr8 hr-double hr-dotted"></div>
+													<div class="hr hr1 hr-double hr-dotted hidden-print"></div>
 													
 													<div class="row">
 
@@ -137,7 +135,7 @@
 													
 													
 													<div>
-														<table class="table table-striped table-bordered">
+														<table class="table table-striped table-bordered table-condensed">
 															<thead>
 																<tr>
 																	<th class="center">No</th>
@@ -221,7 +219,7 @@
 													
 													<div class="row">
 														<div class="col-sm-12">
-															<table class="table table-striped table-bordered">
+															<table class="table table-striped table-bordered table-condensed">
 															<thead>
 																<tr>
 																	<th class="center">No</th>
