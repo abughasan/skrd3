@@ -98,9 +98,17 @@
 									</tr>
 									<tr>
 										<td>
-											Jumlah Sanksi :
-											a. Bunga<br/>
-											b. Kenaikan
+										<div class="row">
+											<div class="col-sm-6">
+												Jumlah Sanksi<br/>
+											</div>
+											<div class="col-sm-6">
+												:	a. Bunga<br/>
+												: b. Kenaikan
+											</div>
+										</div>
+											 
+											
 										</td>
 										<td>
 											
