@@ -14,8 +14,8 @@ class Report extends CI_Controller {
 		$var['metakeyword'] = "";
 		$var['title'] = "Dashboard";
 		$var['body_class'] = "no-skin";
-		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","select-formwizard","googleapis_font","ace_min_css","ace-extra_min_js");
-		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","formwizard_js");
+		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","select-formwizard","googleapis_font","ace_min_css","ace-extra_min_js","report_css");
+		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","report1_js");
 		$var['template'] = "standalone";
 		$var['interface'] = array("menu","report_skrd","footer");
 		$idheaderskr2 = $this->uri->segment(3);
@@ -63,6 +63,8 @@ class Report extends CI_Controller {
 			
 		endforeach;
 		
+		$var['kabid'] = $this->app_model->getSelectedData('dkabid',array('flag'=>'aktif'));
+		$var['kasie'] = $this->app_model->getSelectedData('dkasie',array('flag'=>'aktif'));
 		
 		$this->load->view('home',$var);
 	}

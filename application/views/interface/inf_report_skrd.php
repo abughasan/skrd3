@@ -15,8 +15,7 @@
 										<div class="widget-box transparent">
 											<div class="widget-header widget-header-large">
 												<h3 class="widget-title grey lighter">
-													<i class="ace-icon fa fa-leaf green"></i>
-													Surat Ketetapan Retribusi Akumulasi Data Awal
+													LAMPIRAN SURAT KETETEAPAN RETRIBUSI (SKR)
 												</h3>
 
 												<div class="widget-toolbar no-border invoice-info">
@@ -39,7 +38,7 @@
 												<div class="widget-main padding-24">
 													<div class="row">
 														<div class="col-sm-6">
-															<div class="row">
+															<div class="row hidden-print">
 																<div class="col-xs-11 label label-lg label-info arrowed-in arrowed-right">
 																	<b>Info Perusahaan / Wajib Retribusi</b>
 																</div>
@@ -59,12 +58,7 @@
 
 																	<li>
 																		<i class="ace-icon fa fa-caret-right blue"></i>
-																		<?=$propinsi->row()->propinsi_name?>, <?=$kota->row()->kota_name?>
-																	</li>
-
-																	<li>
-																		<i class="ace-icon fa fa-caret-right blue"></i>
-																		<?=$kecamatan->row()->kecamatan_name?> <?=@$desa->row()->desa_name?>
+																		<?=$propinsi->row()->propinsi_name?>, <?=$kota->row()->kota_name?> <?=$kecamatan->row()->kecamatan_name?> <?=@$desa->row()->desa_name?>
 																	</li>
 
 																	<li class="divider"></li>
@@ -74,7 +68,7 @@
 														</div><!-- /.col -->
 
 														<div class="col-sm-6">
-															<div class="row">
+															<div class="row hidden-print">
 																<div class="col-xs-11 label label-lg label-success arrowed-in arrowed-right">
 																	<b>Informasi Gedung / Prasarana</b>
 																</div>
@@ -231,11 +225,14 @@
 															<thead>
 																<tr>
 																	<th class="center">No</th>
-																	<th>Klasifikasi</th>
-																	<th class="hidden-xs">Bobot</th>
-																	<th class="hidden-480">Parameter</th>
-																	<th>Indeks</th>
-																	<th>Bobot x Indeks</th>
+																	<th>Kode</th>
+																	<th class="">Unit Bangunan</th>
+																	<th class="">Luas Bangunan</th>
+																	<th>IIG</th>
+																	<th>ILP</th>
+																	<th>Harga Satuan</th>
+																	<th class="hidden-sm">Unit</th>
+																	<th>Jumlah</th>
 																</tr>
 															</thead>
 
@@ -243,28 +240,60 @@
 															<?php
 															$a=0;
 															foreach ($skr->result() as $baris): 
+																?>
+																<tr>
+																	<td><?=$a?></td>
+																	<td><?=$baris->kode?></td>
+																	<td><?=$baris->unit_bangunan?></td>
+																	<td><?=$baris->luas?></td>
+																	<td><?=$baris->indeks_integritas?></td>
+																	<td><?=$baris->indeks_lingpem?></td>
+																	<td><?=$baris->harga_satuan?></td>
+																	<td><?=$baris->jumlah_unit?></td>
+																	<td class="jumlah_ret autonum" align="right"><?=$baris->jumlah_ret?></td>
+																</tr>
+																<?php
 															$a++;
 															?>
 															
 															<?php endforeach; ?>
+																<tr>
+																	<td	colspan="8">TOTAL</td>
+																	<td align="right" class="total_ret autonum"></td>
+																</tr>
+																<tr>
+																	<td	colspan="8">PEMBULATAN</td>
+																	<td align="right" class="pemb_ret autonum"></td>
+																</tr>
+																<tr>
+																	<td	colspan="9" class="terbilang_ret">TERBILANG : <span></span></td>
+																</tr>
 															</tbody>
 															</table>
 														</div>
 													</div>
 													
 													<div class="row">
-														<div class="col-sm-5 pull-right">
-															<h4 class="pull-right">
-																Total amount :
-																<span class="red">Rp 395</span>
-															</h4>
+														<div class="col-xs-6" align="center">
+														KABID PENGENDALIAN BANGUNAN<br/>
+														DAN REKLAME DINAS TATA KOTA<br/>
+														KOTA CILEGON
+														<p>&nbsp;</p>
+														<p>&nbsp;</p>
+														<p>&nbsp;</p>
+														<u><?=$kabid->row()->nama?></u><br/>
+														NIP : <?=$kabid->row()->nip?><br/>
 														</div>
-														<div class="col-sm-7 pull-left"> Extra Information </div>
-													</div>
-
-													<div class="space-6"></div>
-													<div class="well">
-														Terimakasih telah membayar retribusi. Retribusi anda membangun kota.
+														<div class="col-xs-6" align="center">
+														KASIE PENGENDALIAN TEKNIS<br/>
+														BANGUNAN DINAS TATA KOTA<br/>
+														KOTA CILEGON
+														<p>&nbsp;</p>
+														<p>&nbsp;</p>
+														<p>&nbsp;</p>
+														<u><?=$kasie->row()->nama?></u><br/>
+														NIP : <?=$kasie->row()->nip?><br/>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -278,3 +307,4 @@
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
+			
