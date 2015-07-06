@@ -108,6 +108,14 @@
 
 						<b class="arrow"></b>
 					</li>
+					<li class="">
+						<a href="<?=base_url()?>report/all">
+							<i class="menu-icon fa fa-pencil-square-o"></i>
+							<span class="menu-text"> Laporan </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

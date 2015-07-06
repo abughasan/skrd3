@@ -17,7 +17,7 @@ class Report extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","select-formwizard","googleapis_font","ace_min_css","ace-extra_min_js","report_css");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","report1_js");
 		$var['template'] = "standalone";
-		$var['interface'] = array("report_awal_skrd");
+		$var['interface'] = array("menu","report_awal_skrd");
 		$idheaderskr2 = $this->uri->segment(3);
 		$idheaderskr1 = $this->session->userdata('idtransheader');
 		if($idheaderskr1):
@@ -71,7 +71,7 @@ class Report extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","select-formwizard","googleapis_font","ace_min_css","ace-extra_min_js","report_css");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","report1_js");
 		$var['template'] = "standalone";
-		$var['interface'] = array("report_skrd");
+		$var['interface'] = array("menu","report_skrd");
 		$idheaderskr2 = $this->uri->segment(3);
 		$idheaderskr1 = $this->session->userdata('idtransheader');
 		if($idheaderskr1):
@@ -119,6 +119,24 @@ class Report extends CI_Controller {
 		
 		$var['kabid'] = $this->app_model->getSelectedData('dkabid',array('flag'=>'aktif'));
 		$var['kasie'] = $this->app_model->getSelectedData('dkasie',array('flag'=>'aktif'));
+		
+		$this->load->view('home',$var);
+	}
+	
+	function all()
+	{
+		$var['htmllang'] = "id";
+		$var['metadesc'] = "";
+		$var['metakeyword'] = "";
+		$var['title'] = "Dashboard";
+		$var['body_class'] = "no-skin";
+		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","select-formwizard","googleapis_font","ace_min_css","ace-extra_min_js","report_css");
+		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","report1_js");
+		$var['template'] = "standalone";
+		$var['interface'] = array("menu","report_all");
+		
+		$this->db->order_by("id", "desc"); 
+		$var['headerskr'] = $this->app_model->getAllData('transheaderskr');
 		
 		$this->load->view('home',$var);
 	}
