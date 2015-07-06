@@ -270,7 +270,7 @@
 															</table>
 														</div>
 													</div>
-													
+													<p>&nbsp;</p>
 													<div class="row">
 														<div class="col-xs-6" align="center">
 														KABID PENGENDALIAN BANGUNAN<br/>
@@ -296,6 +296,12 @@
 												</div>
 											</div>
 										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-sm-12"><br/>
+										<a href="<?=base_url()?>report/skrd/<?=$idheaderskr?>" class="btn btn-lg btn-danger hidden-print">lihat SKR</a>
 									</div>
 								</div>
 

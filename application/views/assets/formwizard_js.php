@@ -56,6 +56,7 @@
 					}
 				})
 				.on('finished.fu.wizard', function(e) {
+					// var idheaderskr = 
 					bootbox.dialog({
 						message: "Thank you! Your information was successfully saved!", 
 						buttons: {

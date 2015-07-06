@@ -174,7 +174,11 @@
 								</table>
 							</div>
 						</div>
-						
+						<div class="row">
+							<div class="col-sm-12"><br/>
+								<a href="<?=base_url()?>report/skrd_lampiran/<?=$idheaderskr?>" class="btn btn-lg btn-danger hidden-print">lihat lampiran</a>
+							</div>
+						</div>
 					</div>
 					</div>
 					</div>
