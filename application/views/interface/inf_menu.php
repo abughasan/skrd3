@@ -96,6 +96,30 @@
 								</a>
 
 								<b class="arrow"></b>
+							</li>	
+							<li class="<?php ((isset($dkasie)) ? print $dkasie : ""); ?>">
+								<a href="<?=base_url()?>master/kasie">
+									<i class="menu-icon fa fa-users"></i>
+									Data Kasie
+								</a>
+
+								<b class="arrow"></b>
+							</li>	
+							<li class="<?php ((isset($dkabid)) ? print $dkabid : ""); ?>">
+								<a href="<?=base_url()?>master/kabid">
+									<i class="menu-icon fa fa-users"></i>
+									Data Kabid
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="<?php ((isset($dpenggunaanggaran)) ? print $dpenggunaanggaran : ""); ?>">
+								<a href="<?=base_url()?>master/penggunaanggaran">
+									<i class="menu-icon fa fa-users"></i>
+									Data Pengguna Anggaran
+								</a>
+
+								<b class="arrow"></b>
 							</li>
 						</ul>
 					</li>
@@ -110,7 +134,7 @@
 					</li>
 					<li class="">
 						<a href="<?=base_url()?>report/all">
-							<i class="menu-icon fa fa-pencil-square-o"></i>
+							<i class="menu-icon fa fa-book"></i>
 							<span class="menu-text"> Laporan </span>
 						</a>
 
