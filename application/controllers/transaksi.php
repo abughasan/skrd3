@@ -126,9 +126,9 @@ class Transaksi extends CI_Controller {
 		
 		$transheader['noskr'] = '123';
 		$transheader['tgl_penetapan'] = date('Y-m-d');
-		$transheader['idpengguna'] = $this->app_model->getSelectedData('dpenggunaanggaran',array('flag'=>'aktif'))->row()->id;
-		$transheader['idkasie'] = $this->app_model->getSelectedData('dkasie',array('flag'=>'aktif'))->row()->id;
-		$transheader['idkabid'] = $this->app_model->getSelectedData('dkabid',array('flag'=>'aktif'))->row()->id;
+		$transheader['idpengguna'] = $this->app_model->getSelectedData('dpenggunaanggaran',array('flag'=>'aktif'))->row()->idpeng;
+		$transheader['idkasie'] = $this->app_model->getSelectedData('dkasie',array('flag'=>'aktif'))->row()->idkasie;
+		$transheader['idkabid'] = $this->app_model->getSelectedData('dkabid',array('flag'=>'aktif'))->row()->idkabid;
 		$transheader['idwajibret'] = $wrlastid;
 		
 		$insert2 = $this->app_model->insertData('transheaderskr',$transheader);
