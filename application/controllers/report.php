@@ -20,13 +20,14 @@ class Report extends CI_Controller {
 		$var['interface'] = array("menu","report_awal_skrd");
 		$idheaderskr2 = $this->uri->segment(3);
 		$idheaderskr1 = $this->session->userdata('idtransheader');
-		if($idheaderskr1):
-			$idheaderskr = $idheaderskr1;
-			$var['idheaderskr'] = $idheaderskr1;
-		else:
+		if($idheaderskr2):
 			$idheaderskr = $idheaderskr2;
 			$var['idheaderskr'] = $idheaderskr2;
+		else:
+			$idheaderskr = $idheaderskr1;
+			$var['idheaderskr'] = $idheaderskr1;
 		endif;
+		
 		
 		// data dari database
 		//data transaksi utama
@@ -44,7 +45,7 @@ class Report extends CI_Controller {
 		
 		//data gedung
 		$var['bangunan'] = $this->app_model->getSelectedData('dbangunan',array('id'=>$var['headerskr']->row()->idbangunan));
-		$var['fungsi'] = $this->app_model->getSelectedData('mfungsi',array('idmfungsi'=>$var['transintegrasi']->row()->idmfungsi));
+		$var['fungsi'] = @$this->app_model->getSelectedData('mfungsi',array('idmfungsi'=>$var['transintegrasi']->row()->idmfungsi));
 		$var['kecamatan_b'] = $this->app_model->getSelectedData('mkecamatan',array('kecamatan_id'=>$var['bangunan']->row()->kecamatan_id));
 		$var['desa_b'] = $this->app_model->getSelectedData('mdesa',array('desa_id'=>$var['bangunan']->row()->desa_id));
 		
@@ -74,12 +75,12 @@ class Report extends CI_Controller {
 		$var['interface'] = array("menu","report_skrd");
 		$idheaderskr2 = $this->uri->segment(3);
 		$idheaderskr1 = $this->session->userdata('idtransheader');
-		if($idheaderskr1):
-			$idheaderskr = $idheaderskr1;
-			$var['idheaderskr'] = $idheaderskr1;
-		else:
+		if($idheaderskr2):
 			$idheaderskr = $idheaderskr2;
 			$var['idheaderskr'] = $idheaderskr2;
+		else:
+			$idheaderskr = $idheaderskr1;
+			$var['idheaderskr'] = $idheaderskr1;
 		endif;
 		
 		// data dari database

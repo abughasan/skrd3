@@ -34,7 +34,7 @@
 											MASA TAHUN 2015<br/>
 												: <?=@$wajibretribusi->row()->nama?> / <?=@$wajibretribusi->row()->pt?><br/>
 												: <?=@$wajibretribusi->row()->alamat?><br/>
-												&nbsp;&nbsp;<?=$propinsi->row()->propinsi_name?>, <?=$kota->row()->kota_name?> <?=$kecamatan->row()->kecamatan_name?> <?=@$desa->row()->desa_name?><br/>
+												&nbsp;&nbsp;<?=@$propinsi->row()->propinsi_name?>, <?=@$kota->row()->kota_name?> <?=@$kecamatan->row()->kecamatan_name?> <?=@$desa->row()->desa_name?><br/>
 												:<br/>
 												:<br/>
 											</div>
@@ -74,8 +74,8 @@
 												Lokasi 
 											</div>
 											<div class="col-sm-8">
-												: <?=$fungsi->row()->parameter?> (<?=$bangunan->row()->jenis_bangunan?>)<br/>
-												: <?=$bangunan->row()->lokasi?><br/>
+												: <?=@$fungsi->row()->parameter?> (<?=@$bangunan->row()->jenis_bangunan?>)<br/>
+												: <?=@$bangunan->row()->lokasi?><br/>
 											</div>
 											</div>
 										</td>

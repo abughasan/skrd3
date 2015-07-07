@@ -30,7 +30,7 @@
 										<td><?=$a?></td>
 										<td><?=$row->id?></td>
 										<td><?=$row->tgl_penetapan?></td>
-										<td><?=$this->app_model->getSelectedData('dwajibretribusi',array('id'=>$row->idwajibret))->row()->nama?></td>
+										<td><?=@$this->app_model->getSelectedData('dwajibretribusi',array('id'=>$row->idwajibret))->row()->nama?></td>
 										<td><?=@$this->app_model->getSelectedData('mfungsi',array('idmfungsi'=>$this->app_model->getSelectedData('transintegritas',array('idheaderskr'=>"{$row->id}"))->row()->idmfungsi))->row()->parameter?></td>
 										<td>
 										<?=@$this->app_model->getSelectedData('dbangunan',array('id'=>$row->idbangunan))->row()->lokasi?> <br/>
