@@ -12,7 +12,7 @@ class Transaksi extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","select-formwizard","googleapis_font","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","formwizard_js");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","transaksi_wizard");
+		$var['interface'] = array("force_login","menu","transaksi_wizard");
 		$var['komponen_bottom'] = array("footer");
 		
 		// data dari database
@@ -432,11 +432,23 @@ class Transaksi extends CI_Controller {
 			<option value="<?=$row->indeks_integritas?>"><?=$row->indeks_integritas?> - indeks ke - <?=$row->tabel_ke?></option>
 		<?php endforeach; ?>
 		</select>
+		&nbsp;<input type="checkbox" name="basement" id="checkbox_basement"> Basement
+		
 		<script>
 			$('#changeIntegrasi').change(function(){
 				var new_indeks = $('#changeIntegrasi option:selected').val();
 				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
 			})
+			$( "input" ).change(function() {
+			  var $input = $( this );
+			  if ($input.is( ":checked" )) {
+				var new_indeks = $('#changeIntegrasi option:selected').val() * 1.3;
+				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
+			  }else{
+				var new_indeks = $('#changeIntegrasi option:selected').val();
+				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
+			  }
+			}).change();
 		</script>
 		<?php
 	}

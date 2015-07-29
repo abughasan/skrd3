@@ -30,10 +30,12 @@
 		
 		$a=0;
 		$b=count($_POST)-1;
+		$z=print_r($_POST);
 		$q_update = "UPDATE {$table} SET ";
 		for($i=1;$i<=count($kolom);$i++) {
 			if(array_key_exists($kolom[$i],$_POST)) {$a++;
-				$q_update .= $kolom[$i]." = '".$_POST[$kolom[$i]]."'";
+				$q_update .= $kolom[$i]." = '".$_POST[$kolom[$i]]."' ";
+				
 				// $q_update .= 'kolomcount'.count(array_key_exists($kolom[$i],$_POST)).'exist'.$a.$b;
 				(($b==$a) ? $q_update .= ' ' : $q_update .= ' ');
 			}

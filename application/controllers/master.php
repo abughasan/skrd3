@@ -12,7 +12,7 @@ class Master extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","ace-script_min_js");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","dashboard","footer");
+		$var['interface'] = array("force_login","menu","dashboard","footer");
 		$this->load->view('home',$var);
 	}
 	public function lingkup()
@@ -27,7 +27,7 @@ class Master extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","jquery-ui_css","datepicker_css","ui_jqgrid_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","datepicker_js","jqgrid_js","ace-script_min_js","jqgrid_auto");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","jqgrid","footer");
+		$var['interface'] = array("force_login","menu","jqgrid","footer");
 		
 		#------------------------------------------------------------------------------------------------------------
 		#	jQGrid variable dimulai dari sini 							KETERANGAN
@@ -87,7 +87,7 @@ class Master extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","jquery-ui_css","datepicker_css","ui_jqgrid_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","datepicker_js","jqgrid_js","ace-script_min_js","jqgrid_auto");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","jqgrid","footer");
+		$var['interface'] = array("force_login","menu","jqgrid","footer");
 		
 		#------------------------------------------------------------------------------------------------------------
 		#	jQGrid variable dimulai dari sini 							KETERANGAN
@@ -150,7 +150,7 @@ class Master extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","jquery-ui_css","datepicker_css","ui_jqgrid_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","datepicker_js","jqgrid_js","ace-script_min_js","jqgrid_auto");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","jqgrid","footer");
+		$var['interface'] = array("force_login","menu","jqgrid","footer");
 		
 		#------------------------------------------------------------------------------------------------------------
 		#	jQGrid variable dimulai dari sini 							KETERANGAN
@@ -214,7 +214,7 @@ class Master extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","jquery-ui_css","datepicker_css","ui_jqgrid_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","datepicker_js","jqgrid_js","ace-script_min_js","jqgrid_auto");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","jqgrid","footer");
+		$var['interface'] = array("force_login","menu","jqgrid","footer");
 		
 		#------------------------------------------------------------------------------------------------------------
 		#	jQGrid variable dimulai dari sini 							KETERANGAN
@@ -278,7 +278,7 @@ class Master extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","jquery-ui_css","datepicker_css","ui_jqgrid_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","datepicker_js","jqgrid_js","ace-script_min_js","jqgrid_auto");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","jqgrid","footer");
+		$var['interface'] = array("force_login","menu","jqgrid","footer");
 		
 		#------------------------------------------------------------------------------------------------------------
 		#	jQGrid variable dimulai dari sini 							KETERANGAN
@@ -342,7 +342,7 @@ class Master extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","jquery-ui_css","datepicker_css","ui_jqgrid_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","datepicker_js","jqgrid_js","ace-script_min_js","jqgrid_auto");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","jqgrid","footer");
+		$var['interface'] = array("force_login","menu","jqgrid","footer");
 		
 		#------------------------------------------------------------------------------------------------------------
 		#	jQGrid variable dimulai dari sini 							KETERANGAN
@@ -410,7 +410,7 @@ class Master extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","jquery-ui_css","datepicker_css","ui_jqgrid_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","datepicker_js","jqgrid_js","ace-script_min_js","jqgrid_auto");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","jqgrid","footer");
+		$var['interface'] = array("force_login","menu","jqgrid","footer");
 		
 		#------------------------------------------------------------------------------------------------------------
 		#	jQGrid variable dimulai dari sini 							KETERANGAN
@@ -477,7 +477,7 @@ class Master extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","jquery-ui_css","datepicker_css","ui_jqgrid_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","datepicker_js","jqgrid_js","ace-script_min_js","jqgrid_auto");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","jqgrid","footer");
+		$var['interface'] = array("force_login","menu","jqgrid","footer");
 		
 		#------------------------------------------------------------------------------------------------------------
 		#	jQGrid variable dimulai dari sini 							KETERANGAN

@@ -12,7 +12,46 @@ class Welcome extends CI_Controller {
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","ace_min_css","ace-extra_min_js");
 		$var['assets_bottom'] = array("jquery","bootstrap_min_js","ace-script_min_js");
 		$var['template'] = "standalone";
-		$var['interface'] = array("menu","dashboard","footer");
+		$var['interface'] = array("force_login","menu","dashboard","footer");
 		$this->load->view('home',$var);
+	}
+	public function login()
+	{
+		$var['htmllang'] = "id";
+		$var['metadesc'] = "";
+		$var['metakeyword'] = "";
+		$var['title'] = "Dashboard";
+		$var['body_class'] = "login-layout light-login";
+		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","ace_min_css","ace-extra_min_js");
+		$var['assets_bottom'] = array("jquery","bootstrap_min_js","ace-script_min_js","login_js");
+		$var['template'] = "blank";
+		$var['interface'] = array("login");
+		$this->load->view('home',$var);
+	}
+	public function login_cek()
+	{
+		$data['username'] = $this->input->post('username');
+		$data['password'] = $this->input->post('password');
+		
+		$ceklogin = $this->app_model->getSelectedData('user',$data)->row();
+			if(empty($ceklogin)) {
+				redirect('welcome/login?m=Maaf sandi salah','refresh');
+			}else{
+				$sess_array = array(
+				 'userid' => $ceklogin->iduser,
+				 'username' => $ceklogin->username,
+				);
+				$this->session->set_userdata($sess_array);
+				redirect('','refresh');			
+			}
+	}
+	public function cekout()
+	{
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('iduser');
+		$user = $this->session->userdata('username');
+		if(empty($user)) {
+				redirect('welcome/login?m=Anda telah keluar','refresh');
+		}
 	}
 }

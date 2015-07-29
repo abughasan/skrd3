@@ -285,19 +285,13 @@
 								<img class="nav-user-photo hide" src="" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
-									Pak Muhie
+									<?=$this->session->userdata('username')?>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
 							</a>
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<li>
-									<a href="#">
-										<i class="ace-icon fa fa-cog"></i>
-										Settings
-									</a>
-								</li>
 
 								<li>
 									<a href="profile.html">
@@ -309,7 +303,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="<?=base_url()?>welcome/cekout">
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>
