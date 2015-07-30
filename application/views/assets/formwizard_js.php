@@ -496,6 +496,7 @@
 					$('#total_skrd_fix').autoNumeric('set',total);
 					$('#total_skrd_fix_bulat').autoNumeric('set',Math.ceil(total / 1000) * 1000);
 					$('#btn_total_skrd').addClass('hide');
+					$('#btn_simpan_skrd').removeClass('hide');
 					$('#btn_reset_total_skrd').removeClass('hide');
 				})
 				$('#btn_reset_total_skrd').click(function(){

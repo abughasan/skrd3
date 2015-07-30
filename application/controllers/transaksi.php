@@ -374,6 +374,9 @@ class Transaksi extends CI_Controller {
 		$update_count = 0;
 		for($a=0;$a<$i;$a++)
 		{
+			if(substr($_POST['indeks_integritas'][$a],-3)=="(b)")
+			{$data['indeks_basement']="(b)";}else{$data['indeks_basement']="";}
+			
 			echo "data ke ". $a." tersimpan \n";
 			$data['idmhargasat'] = $_POST['idmhargasatuan'][$a];
 			$data['kode'] = $_POST['kode'][$a];
@@ -398,6 +401,9 @@ class Transaksi extends CI_Controller {
 		
 		for($a=0;$a<$i;$a++)
 		{
+			if(substr($_POST['indeks_integritas'][$a],-3)=="(b)")
+			{$data['indeks_basement']="(b)";}else{$data['indeks_basement']="";}
+			
 			echo "data ke ". $a." tersimpan \n";
 			$data['idmhargasat'] = $_POST['idmhargasatuan'][$a];
 			$data['kode'] = $_POST['kode'][$a];
@@ -438,17 +444,20 @@ class Transaksi extends CI_Controller {
 			$('#changeIntegrasi').change(function(){
 				var new_indeks = $('#changeIntegrasi option:selected').val();
 				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
+				hitungskrdblur(<?=$nomer_row?>);
+				$( "input" ).change(function() {
+				  var $input = $( this );
+				  if ($input.is( ":checked" )) {
+					var new_indeks = $('#changeIntegrasi option:selected').val() * 1.3 + "(b)";
+					$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
+					hitungskrdblur(<?=$nomer_row?>);
+				  }else{
+					var new_indeks = $('#changeIntegrasi option:selected').val();
+					$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
+					hitungskrdblur(<?=$nomer_row?>);
+				  }
+				}).change();
 			})
-			$( "input" ).change(function() {
-			  var $input = $( this );
-			  if ($input.is( ":checked" )) {
-				var new_indeks = $('#changeIntegrasi option:selected').val() * 1.3;
-				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
-			  }else{
-				var new_indeks = $('#changeIntegrasi option:selected').val();
-				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
-			  }
-			}).change();
 		</script>
 		<?php
 	}

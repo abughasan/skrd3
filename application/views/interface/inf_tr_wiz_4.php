@@ -43,7 +43,7 @@
 																	<button id="btn_tambah_skrd" class="btn btn-warning btn-lg" type="button">Tambah Bangunan / Prasarana (Klik untuk tambah!)</button>
 																	<button id="btn_total_skrd" class="btn btn-success btn-lg" type="button">Total Biaya Retribusi</button>
 																	<button id="btn_reset_total_skrd" class="btn btn-danger btn-lg hide" type="button">Reset Total</button>
-																	<button id="btn_simpan_skrd" class="btn btn-primary btn-lg" type="button">Simpan Biaya Retribusi </button>
+																	<button id="btn_simpan_skrd" class="hide btn btn-primary btn-lg" type="button">Simpan Biaya Retribusi </button>
 																	</div>
 																</div>
 														</div>

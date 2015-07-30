@@ -244,7 +244,7 @@
 																	<td><?=$baris->kode?></td>
 																	<td><?=$baris->unit_bangunan?></td>
 																	<td><?=$baris->luas?></td>
-																	<td><?=$baris->indeks_integritas?></td>
+																	<td><?=$baris->indeks_integritas?> <?=$baris->indeks_basement?></td>
 																	<td><?=$baris->indeks_lingpem?></td>
 																	<td><?=$baris->harga_satuan?></td>
 																	<td><?=$baris->jumlah_unit?></td>
