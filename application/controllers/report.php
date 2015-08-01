@@ -131,8 +131,8 @@ class Report extends CI_Controller {
 		$var['metakeyword'] = "";
 		$var['title'] = "Dashboard";
 		$var['body_class'] = "no-skin";
-		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","select-formwizard","googleapis_font","ace_min_css","ace-extra_min_js","report_css");
-		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","report1_js");
+		$var['assets_top'] = array("acebootstrap_css","jquery-ui_css","fontawesome_css","datatable_css","datatable_ext_tabletool_css","googleapis_font","ace_min_css","ace-extra_min_js","report_css");
+		$var['assets_bottom'] = array("jquery","jquery-ui_js","datatable_js","datatable_ext_tabletool_js","datatable_plugins_daterange_js","bootstrap_min_js","ace-script_min_js","autoNumeric_js","reportall_js");
 		$var['template'] = "standalone";
 		$var['interface'] = array("menu","report_all");
 		

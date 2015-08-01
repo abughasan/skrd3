@@ -1,0 +1,1 @@
+<script src="<?=$this->config->item('base_assets')?>jqplugins/dataTables/ext/dataTables.tableTools.js"></script>
