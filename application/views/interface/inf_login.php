@@ -19,7 +19,17 @@
 										<div class="widget-main">
 											<h4 class="header blue lighter bigger">
 												<i class="ace-icon fa fa-coffee green"></i>
+												<?php 
+													if (!isset($_GET['m'])):
+												?>
 												Please Enter Your Information
+												<?php 
+													else:
+												?>
+												<?=$_GET['m']?>
+												<?php 
+													endif;
+												?>
 											</h4>
 
 											<div class="space-6"></div>

@@ -30,16 +30,19 @@ class Welcome extends CI_Controller {
 	}
 	public function login_cek()
 	{
-		$data['username'] = $this->input->post('username');
-		$data['password'] = $this->input->post('password');
+		$data['username'] = $_GET['username'];
+		$data['password'] = $_GET['password'];
 		
 		$ceklogin = $this->app_model->getSelectedData('user',$data)->row();
 			if(empty($ceklogin)) {
+			// echo "salah";
 				redirect('welcome/login?m=Maaf sandi salah','refresh');
 			}else{
+			// echo "benar";
 				$sess_array = array(
 				 'userid' => $ceklogin->iduser,
 				 'username' => $ceklogin->username,
+				 'userlevel' => $ceklogin->userlevel,
 				);
 				$this->session->set_userdata($sess_array);
 				redirect('','refresh');			
@@ -49,6 +52,7 @@ class Welcome extends CI_Controller {
 	{
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('iduser');
+		$this->session->unset_userdata('userlevel');
 		$user = $this->session->userdata('username');
 		if(empty($user)) {
 				redirect('welcome/login?m=Anda telah keluar','refresh');
