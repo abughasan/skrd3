@@ -121,6 +121,21 @@
 
 								<b class="arrow"></b>
 							</li>
+							<?php 
+							$userlevel = $this->session->userdata('userlevel');
+							if ($userlevel=='super user') :
+							?>
+							<li class="<?php ((isset($duser)) ? print $duser : ""); ?>">
+								<a href="<?=base_url()?>master/user">
+									<i class="menu-icon fa fa-users"></i>
+									Admin App SKRD
+								<span data-original-title="Menu Khusus Super User" class="badge badge-transparent tooltip-error" title="">
+									<i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+								</span>
+								</a>
+
+							</li>
+							<?php endif; ?>
 						</ul>
 					</li>
 

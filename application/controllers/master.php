@@ -533,6 +533,70 @@ class Master extends CI_Controller {
 		endif;
 	}
 	
+	public function user()
+	{
+		$var['htmllang'] = "id";
+		$var['metadesc'] = "";
+		$var['metakeyword'] = "";
+		$var['title'] = "Manage User Aplikasi SKRD";
+		$var['body_class'] = "no-skin";
+		$var['mmaster_data'] = "active open";
+		$var['duser'] = "active";
+		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","jquery-ui_css","datepicker_css","ui_jqgrid_css","ace_min_css","ace-extra_min_js");
+		$var['assets_bottom'] = array("jquery","bootstrap_min_js","datepicker_js","jqgrid_js","ace-script_min_js","jqgrid_auto");
+		$var['template'] = "standalone";
+		$var['interface'] = array("force_login","menu","jqgrid","footer");
+		
+		#------------------------------------------------------------------------------------------------------------
+		#	jQGrid variable dimulai dari sini 							KETERANGAN
+		#------------------------------------------------------------------------------------------------------------
+		
+		// $var['interface'] = array('grid');								#--- Tambahkan interface grid di template kolom 2
+		$mode = $this->uri->segment(3);
+		$var['jqgrid'] = 'table_interface_jqgrid';					#--- meload javascript jqgrid interface
+		$var['table'] = 'user';									#--- mendefinisikan nama table yang dipanggil ke jqgrid
+		$var['kolom'] = $this->_getkolom($var['table']);				#--- memanggil private fungsi _getkolom. lihat fungsi _getkolom utk ket lebih lanjut
+		$var['jqgrid_at_name'] = array(								#--- mendefinisikan nama kolom pada jqgrid
+				$var['kolom'][1] => 'ID',								#    didefnikan  berdasarkan urutan kolom 
+				$var['kolom'][2] => 'Username (login)',							#    misalkan kolom[1] namanya ID, kolom[2] namanya Nama, dst
+				$var['kolom'][3] => 'Sandi',												
+				$var['kolom'][4] => 'userlevel',																						
+				// $var['kolom'][5] => 'harga_satuan',												
+				// $var['kolom'][6] => 'keterangan',												
+		);
+		$var['jqgrid_at'] = array(										#--- mendefinisikan attribut kolom pada jqgrid
+			$var['kolom'][1] => 'hidden:false,width:20',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][2] => 'editable:true,width:200',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][3] => 'editable:true,width:200',				#    didefnikan  berdasarkan urutan kolom 
+			$var['kolom'][4] => 'editable:true,width:200',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya 
+			// $var['kolom'][5] => 'editable:true,width:100',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
+			// $var['kolom'][6] => 'editable:true,width:400',						#    misalkan kolom[1] attributnua hidden:false, kolom[2] attributnya width:100, dst
+		);
+		// $var['jqgrid_at'][$var['kolom'][3]] = 'editable:true,edittype:"select",width:250,';		#--- mendefinisikan attribut kolom diluar format array default
+					
+		$var['button_nav'] = array(									#--- Tambahkan tombol perintah di jqgrid
+			'add' => true,												#    tersedia tombol add, reload, cari dan delete
+			'reload' => true,											#    cara mengaktifkannya dengan memberi nilai TRUE pada key variabel array
+			'delete' => true,
+			'cari' => true,
+		);
+		$var['join'] = array(											  #--- mengaktifkan fungsi join table di jqgird
+			'id_i_guru'	=> array( 'i_guru-idid'	=>	'nama' ), #	contoh :
+			'id_mtd'	=> array( 'm_tunjangan_detail-idid'	=>	'detail_tunjangan' ),  #	'id_lembaga'	=> array( 'm_lembaga-idid'			=>	'desc' ),
+			// 'id_status'		=> array( 'm_status-idid'	=>	'status' ),  
+		);																  
+		
+		if ( empty ( $mode ) ):
+			$this->load->view('home',$var);
+		endif;
+		if (isset($mode) and $mode == 'load' ):
+			$this->load->view('jqgrid/table_load_jqgrid',$var);
+		endif;
+		if (isset($mode) and $mode == 'update' ):
+			$this->load->view('jqgrid/table_update_jqgrid',$var);
+		endif;
+	}
+	
 	# Fungsi pRIVATE ambil nama kolom dari table
 	private function _getkolom($table)
 	{
