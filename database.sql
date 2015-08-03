@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS `dbangunan` (
   `kecamatan_id` int(11) NOT NULL,
   `desa_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=255 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=257 DEFAULT CHARSET=latin1;
 
--- Dumping data for table ksr.dbangunan: ~254 rows (approximately)
+-- Dumping data for table ksr.dbangunan: ~256 rows (approximately)
 /*!40000 ALTER TABLE `dbangunan` DISABLE KEYS */;
 INSERT INTO `dbangunan` (`id`, `jenis_bangunan`, `lokasi`, `kecamatan_id`, `desa_id`) VALUES
 	(1, 'Tower', 'Jampang', 1171, 2424),
@@ -281,7 +281,9 @@ INSERT INTO `dbangunan` (`id`, `jenis_bangunan`, `lokasi`, `kecamatan_id`, `desa
 	(251, 'ss', 'ss', 4482, 1580),
 	(252, 'Ruko', 'Jln.Raya ', 4482, 24641),
 	(253, 'Gudang Barang', 'Kawasan Industri CIlegon', 1171, 2424),
-	(254, 'Bangunan', 'Baru', 1929, 2116);
+	(254, 'Bangunan', 'Baru', 1929, 2116),
+	(255, 'Taman Bawah Laut', 'Anyer', 1929, 2113),
+	(256, 'Water Park', 'Anyer', 4453, 1597);
 /*!40000 ALTER TABLE `dbangunan` ENABLE KEYS */;
 
 
@@ -367,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `dwajibretribusi` (
   `npwp` varchar(50) NOT NULL,
   `nope` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=264 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=266 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table ksr.dwajibretribusi: ~193 rows (approximately)
 /*!40000 ALTER TABLE `dwajibretribusi` DISABLE KEYS */;
@@ -620,7 +622,9 @@ INSERT INTO `dwajibretribusi` (`id`, `nama`, `pt`, `alamat`, `propinsi_id`, `kot
 	(260, 'est', 'test', 'test', 8, 50, 293, 73125, '', ''),
 	(261, 'Ahmad Alimuddin', 'Bangkamedia, Tbk', 'Jln. Bangka V / 28 RT 12 / 03', 6, 153, 3097, 1118, '', ''),
 	(262, 'Ahmad Alimuddin', 'CV Bangkamedia', 'Jln. Bangka V /28 RT 12 / 03 ', 6, 153, 3097, 1118, '', ''),
-	(263, 'TEst', 'test', 'test', 6, 152, 4839, 1055, '', '');
+	(263, 'TEst', 'test', 'test', 6, 152, 4839, 1055, '', ''),
+	(264, 'supriyono', 'Undersea Co Ltd', 'Jln. Bangka V no 28', 6, 153, 3097, 1118, '', ''),
+	(265, '-Ahmad Alimuddin,A.Md', 'PT Jurrasic Word', 'Jln. M.H Thamrin no 1', 6, 152, 2323, 1151, '', '');
 /*!40000 ALTER TABLE `dwajibretribusi` ENABLE KEYS */;
 
 
@@ -77393,7 +77397,7 @@ CREATE TABLE IF NOT EXISTS `mkecamatan` (
   KEY `kota_id` (`kota_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6494 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table ksr.mkecamatan: ~6,920 rows (approximately)
+-- Dumping data for table ksr.mkecamatan: ~6,522 rows (approximately)
 /*!40000 ALTER TABLE `mkecamatan` DISABLE KEYS */;
 INSERT INTO `mkecamatan` (`kecamatan_id`, `kecamatan_name`, `kota_id`) VALUES
 	(1, '2 X 11 Enam Lingkung', 322),
@@ -84615,15 +84619,15 @@ CREATE TABLE IF NOT EXISTS `transheaderskr` (
   KEY `FK_transheaderskr_dpenggunaanggaran` (`idpengguna`),
   KEY `FK_transheaderskr_dkasie` (`idkasie`),
   KEY `FK_transheaderskr_dkabid` (`idkabid`),
-  CONSTRAINT `FK_transheaderskr_dkasie` FOREIGN KEY (`idkasie`) REFERENCES `dkasie` (`idkasie`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_transheaderskr_dkabid` FOREIGN KEY (`idkabid`) REFERENCES `dkabid` (`idkabid`) ON UPDATE CASCADE,
   CONSTRAINT `FK_transheaderskr_dbangunan` FOREIGN KEY (`idbangunan`) REFERENCES `dbangunan` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_transheaderskr_dkabid` FOREIGN KEY (`idkabid`) REFERENCES `dkabid` (`idkabid`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_transheaderskr_dkasie` FOREIGN KEY (`idkasie`) REFERENCES `dkasie` (`idkasie`) ON UPDATE CASCADE,
   CONSTRAINT `FK_transheaderskr_dpenggunaanggaran` FOREIGN KEY (`idpengguna`) REFERENCES `dpenggunaanggaran` (`idpeng`) ON UPDATE CASCADE,
   CONSTRAINT `FK_transheaderskr_dwajibretribusi` FOREIGN KEY (`idwajibret`) REFERENCES `dwajibretribusi` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `FK_transheaderskr_mlingkupsubdet` FOREIGN KEY (`idmlingkupsubdet`) REFERENCES `mlingkupsubdet` (`idmlingkupsubdet`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=259 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=261 DEFAULT CHARSET=latin1;
 
--- Dumping data for table ksr.transheaderskr: ~240 rows (approximately)
+-- Dumping data for table ksr.transheaderskr: ~166 rows (approximately)
 /*!40000 ALTER TABLE `transheaderskr` DISABLE KEYS */;
 INSERT INTO `transheaderskr` (`id`, `noskr`, `tgl_penetapan`, `jatuh_tempo`, `status`, `idmlingkupsubdet`, `index_lingpem`, `idpengguna`, `idkasie`, `idkabid`, `idwajibret`, `idbangunan`) VALUES
 	(10, 123, '2015-06-05', '0000-00-00', '', NULL, 0, 1, 1, 1, 15, 1),
@@ -84874,7 +84878,9 @@ INSERT INTO `transheaderskr` (`id`, `noskr`, `tgl_penetapan`, `jatuh_tempo`, `st
 	(255, 123, '2015-06-28', '0000-00-00', '', 1, 1, 1, 1, 1, 260, 251),
 	(256, 123, '2015-06-30', '0000-00-00', '', 1, 1, 1, 1, 1, 261, 252),
 	(257, 123, '2015-06-30', '0000-00-00', '', 1, 1, 1, 1, 1, 262, 253),
-	(258, 123, '2015-07-02', '0000-00-00', '', 1, 1, 1, 1, 1, 263, 254);
+	(258, 123, '2015-07-02', '0000-00-00', '', 1, 1, 1, 1, 1, 263, 254),
+	(259, 123, '2015-07-29', '0000-00-00', '', 1, 1, 1, 1, 1, 264, 255),
+	(260, 123, '2015-07-31', '0000-00-00', '', 1, 1, 1, 1, 1, 265, 256);
 /*!40000 ALTER TABLE `transheaderskr` ENABLE KEYS */;
 
 
@@ -84896,9 +84902,9 @@ CREATE TABLE IF NOT EXISTS `transintegritas` (
   CONSTRAINT `FK_transintegritas_mfungsi` FOREIGN KEY (`idmfungsi`) REFERENCES `mfungsi` (`idmfungsi`) ON UPDATE CASCADE,
   CONSTRAINT `FK_transintegritas_mwaktuguna` FOREIGN KEY (`idmwaktuguna`) REFERENCES `mwaktuguna` (`idmwaktuguna`) ON UPDATE CASCADE,
   CONSTRAINT `FK_transintegritas_transheaderskr` FOREIGN KEY (`idheaderskr`) REFERENCES `transheaderskr` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=latin1;
 
--- Dumping data for table ksr.transintegritas: ~98 rows (approximately)
+-- Dumping data for table ksr.transintegritas: ~103 rows (approximately)
 /*!40000 ALTER TABLE `transintegritas` DISABLE KEYS */;
 INSERT INTO `transintegritas` (`idTransIntegritas`, `idmfungsi`, `indeks_fungsi`, `total_indeks_klas`, `idmwaktuguna`, `indeks_waktuguna`, `indeks_integritas`, `idheaderskr`, `tabel_ke`) VALUES
 	(1, 1, 0.5, 0.64, 1, 0.4, 0.128, 79, 0),
@@ -84998,7 +85004,12 @@ INSERT INTO `transintegritas` (`idTransIntegritas`, `idmfungsi`, `indeks_fungsi`
 	(108, 3, 3, 0.75, 3, 1, 2.24, 257, 1),
 	(109, 1, 0.5, 0.58, 3, 1, 0.29, 257, 2),
 	(110, 5, 0.6, 0.54, 1, 0.4, 0.11, 258, 1),
-	(111, 1, 0.5, 0.45, 1, 0.4, 0.09, 258, 2);
+	(111, 1, 0.5, 0.45, 1, 0.4, 0.09, 258, 2),
+	(112, 3, 3, 0.72, 3, 1, 2.15, 259, 1),
+	(113, 1, 0.5, 0.54, 1, 0.4, 0.11, 259, 2),
+	(114, 2, 0, 0.64, 2, 0.7, 0, 259, 3),
+	(115, 3, 3, 0.72, 3, 1, 2.15, 260, 1),
+	(116, 1, 0.5, 0.56, 1, 0.4, 0.11, 260, 2);
 /*!40000 ALTER TABLE `transintegritas` ENABLE KEYS */;
 
 
@@ -85021,9 +85032,9 @@ CREATE TABLE IF NOT EXISTS `transklasifikasi` (
   CONSTRAINT `FK_transklasifikasi_mklasifikasi` FOREIGN KEY (`idmklas`) REFERENCES `mklasifikasi` (`idmklasifikasi`) ON UPDATE CASCADE,
   CONSTRAINT `FK_transklasifikasi_mklasifikasisub` FOREIGN KEY (`idmklassub`) REFERENCES `mklasifikasisub` (`idmklasifikasisub`) ON UPDATE CASCADE,
   CONSTRAINT `FK_transklasifikasi_transheaderskr` FOREIGN KEY (`idheaderskr`) REFERENCES `transheaderskr` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=605 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=640 DEFAULT CHARSET=latin1;
 
--- Dumping data for table ksr.transklasifikasi: ~505 rows (approximately)
+-- Dumping data for table ksr.transklasifikasi: ~589 rows (approximately)
 /*!40000 ALTER TABLE `transklasifikasi` DISABLE KEYS */;
 INSERT INTO `transklasifikasi` (`idTransKlasifikasi`, `idmklas`, `parameter`, `bobot`, `idmklassub`, `parametersub`, `indeks`, `boboxindeks`, `idheaderskr`, `tabel_ke`) VALUES
 	(8, 1, 'Kompleksitas', 0.25, 1, 'Sederhana', 0.4, 0.1, 78, 0),
@@ -85599,7 +85610,42 @@ INSERT INTO `transklasifikasi` (`idTransKlasifikasi`, `idmklas`, `parameter`, `b
 	(601, 4, 'Zonasi Gempa', 0.15, 10, 'Zona IV/Sedang', 0.5, 0.08, 258, 2),
 	(602, 5, 'Lokasi (kepadatan bangunan)', 0.1, 12, 'Sedang', 0.7, 0.07, 258, 2),
 	(603, 6, 'Ketinggian Bangunan', 0.1, 15, 'Rendah', 0.4, 0.04, 258, 2),
-	(604, 7, 'Kepemilikan', 0.05, 18, 'Yayasan', 0.4, 0.02, 258, 2);
+	(604, 7, 'Kepemilikan', 0.05, 18, 'Yayasan', 0.4, 0.02, 258, 2),
+	(605, 1, 'Kompleksitas', 0.25, 3, 'Khusus', 1, 0.25, 259, 1),
+	(606, 2, 'Permanensi', 0.2, 6, 'Permanen', 1, 0.2, 259, 1),
+	(607, 3, 'Resiko Kebakaran', 0.15, 7, 'Rendah', 0.4, 0.06, 259, 1),
+	(608, 4, 'Zonasi Gempa', 0.15, 10, 'Zona IV/Sedang', 0.5, 0.08, 259, 1),
+	(609, 5, 'Lokasi (kepadatan bangunan)', 0.1, 11, 'Rendah', 0.4, 0.04, 259, 1),
+	(610, 6, 'Ketinggian Bangunan', 0.1, 15, 'Rendah', 0.4, 0.04, 259, 1),
+	(611, 7, 'Kepemilikan', 0.05, 20, 'Badan Usaha', 1, 0.05, 259, 1),
+	(612, 1, 'Kompleksitas', 0.25, 1, 'Sederhana', 0.4, 0.1, 259, 2),
+	(613, 2, 'Permanensi', 0.2, 5, 'Semi permanen', 0.7, 0.14, 259, 2),
+	(614, 3, 'Resiko Kebakaran', 0.15, 7, 'Rendah', 0.4, 0.06, 259, 2),
+	(615, 4, 'Zonasi Gempa', 0.15, 10, 'Zona IV/Sedang', 0.5, 0.08, 259, 2),
+	(616, 5, 'Lokasi (kepadatan bangunan)', 0.1, 12, 'Sedang', 0.7, 0.07, 259, 2),
+	(617, 6, 'Ketinggian Bangunan', 0.1, 15, 'Rendah', 0.4, 0.04, 259, 2),
+	(618, 7, 'Kepemilikan', 0.05, 20, 'Badan Usaha', 1, 0.05, 259, 2),
+	(619, 1, 'Kompleksitas', 0.25, 2, 'Tidak Sederhana', 0.7, 0.18, 259, 3),
+	(620, 2, 'Permanensi', 0.2, 5, 'Semi permanen', 0.7, 0.14, 259, 3),
+	(621, 3, 'Resiko Kebakaran', 0.15, 7, 'Rendah', 0.4, 0.06, 259, 3),
+	(622, 4, 'Zonasi Gempa', 0.15, 10, 'Zona IV/Sedang', 0.5, 0.08, 259, 3),
+	(623, 5, 'Lokasi (kepadatan bangunan)', 0.1, 12, 'Sedang', 0.7, 0.07, 259, 3),
+	(624, 6, 'Ketinggian Bangunan', 0.1, 16, 'Sedang', 0.7, 0.07, 259, 3),
+	(625, 7, 'Kepemilikan', 0.05, 20, 'Badan Usaha', 1, 0.05, 259, 3),
+	(626, 1, 'Kompleksitas', 0.25, 3, 'Khusus', 1, 0.25, 260, 1),
+	(627, 2, 'Permanensi', 0.2, 6, 'Permanen', 1, 0.2, 260, 1),
+	(628, 3, 'Resiko Kebakaran', 0.15, 7, 'Rendah', 0.4, 0.06, 260, 1),
+	(629, 4, 'Zonasi Gempa', 0.15, 10, 'Zona IV/Sedang', 0.5, 0.08, 260, 1),
+	(630, 5, 'Lokasi (kepadatan bangunan)', 0.1, 11, 'Rendah', 0.4, 0.04, 260, 1),
+	(631, 6, 'Ketinggian Bangunan', 0.1, 15, 'Rendah', 0.4, 0.04, 260, 1),
+	(632, 7, 'Kepemilikan', 0.05, 20, 'Badan Usaha', 1, 0.05, 260, 1),
+	(633, 1, 'Kompleksitas', 0.25, 1, 'Sederhana', 0.4, 0.1, 260, 2),
+	(634, 2, 'Permanensi', 0.2, 4, 'Darurat', 0.4, 0.08, 260, 2),
+	(635, 3, 'Resiko Kebakaran', 0.15, 9, 'Tinggi', 1, 0.15, 260, 2),
+	(636, 4, 'Zonasi Gempa', 0.15, 10, 'Zona IV/Sedang', 0.5, 0.08, 260, 2),
+	(637, 5, 'Lokasi (kepadatan bangunan)', 0.1, 11, 'Rendah', 0.4, 0.04, 260, 2),
+	(638, 6, 'Ketinggian Bangunan', 0.1, 16, 'Sedang', 0.7, 0.07, 260, 2),
+	(639, 7, 'Kepemilikan', 0.05, 20, 'Badan Usaha', 1, 0.05, 260, 2);
 /*!40000 ALTER TABLE `transklasifikasi` ENABLE KEYS */;
 
 
@@ -85613,6 +85659,7 @@ CREATE TABLE IF NOT EXISTS `transskr` (
   `satuan` char(50) DEFAULT NULL,
   `harga_satuan` int(11) NOT NULL,
   `indeks_integritas` float NOT NULL,
+  `indeks_basement` char(5) DEFAULT NULL,
   `indeks_lingpem` float NOT NULL,
   `jumlah_unit` int(11) NOT NULL,
   `jumlah_ret` int(11) NOT NULL,
@@ -85622,48 +85669,51 @@ CREATE TABLE IF NOT EXISTS `transskr` (
   KEY `FK_transskr_mhargasatuan` (`idmhargasat`),
   CONSTRAINT `FK_transskr_mhargasatuan` FOREIGN KEY (`idmhargasat`) REFERENCES `mhargasatuan` (`idmhargasatuan`) ON UPDATE CASCADE,
   CONSTRAINT `FK_transskr_transheaderskr` FOREIGN KEY (`idheaderskr`) REFERENCES `transheaderskr` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
 
--- Dumping data for table ksr.transskr: ~37 rows (approximately)
+-- Dumping data for table ksr.transskr: ~40 rows (approximately)
 /*!40000 ALTER TABLE `transskr` DISABLE KEYS */;
-INSERT INTO `transskr` (`idTransSKR`, `idmhargasat`, `kode`, `unit_bangunan`, `luas`, `satuan`, `harga_satuan`, `indeks_integritas`, `indeks_lingpem`, `jumlah_unit`, `jumlah_ret`, `idheaderskr`) VALUES
-	(36, 1, 1000, 'Bangunan Gedung ', 100, NULL, 7500, 0.14, 1, 1, 105000, 189),
-	(37, 9, 2221, 'Gerbang ', 3, NULL, 5500, 0.14, 1, 1, 16500, 189),
-	(41, 1, 1000, 'Bangunan Gedung ', 100, NULL, 7500, 0.14, 1, 1, 105000, 191),
-	(42, 5, 2212, 'Tanggul/retaining wall ', 335, NULL, 5000, 0.14, 1, 1, 1675250, 191),
-	(43, 12, 2232, 'Lapangan parker ', 78, NULL, 1500, 0.14, 1, 1, 117000, 191),
-	(44, 18, 2242, 'Box culverf ', 35, NULL, 4500, 0.14, 1, 1, 157455, 191),
-	(45, 1, 1000, 'Bangunan Gedung ', 100, NULL, 7500, 0.14, 1, 1, 105000, 192),
-	(46, 12, 2232, 'Lapangan parker ', 2, NULL, 1500, 0.14, 1, 1, 3000, 192),
-	(47, 1, 1000, 'Bangunan Gedung ', 100, NULL, 7500, 0.14, 1, 1, 105000, 193),
-	(48, 6, 2213, 'Turap batas kavling/persil ', 22, NULL, 4000, 0.14, 1, 1, 88000, 193),
-	(49, 1, 1000, 'Bangunan Gedung ', 200, NULL, 7500, 0.49, 0.65, 1, 477750, 195),
-	(50, 22, 2253, 'Reservoir air bawah tanah ', 50, NULL, 3000, 0.49, 0.65, 1, 97500, 195),
-	(51, 1, 1000, 'Bangunan Gedung ', 200, NULL, 7500, 0.49, 1, 1, 735000, 196),
-	(52, 11, 2231, 'Jalan ', 1000, NULL, 2000, 0.49, 1, 1, 2000000, 196),
-	(53, 13, 2234, 'Lapangan olah raga terbuka ', 200, NULL, 1500, 0.49, 1, 1, 300300, 196),
-	(54, 11, 2231, 'Jalan ', 10, NULL, 2000, 1.53, 1, 2, 40000, 201),
-	(55, 13, 2234, 'Lapangan olah raga terbuka ', 2000, NULL, 1500, 0.68, 1, 1, 3000000, 251),
-	(56, 1, 1000, 'Bangunan Gedung ', 1000, NULL, 7500, 0.11, 1, 1, 825000, 251),
-	(57, 13, 2234, 'Lapangan olah raga terbuka ', 11, NULL, 1500, 0.68, 1, 1, 16500, 251),
-	(58, 1, 1000, 'Bangunan Gedung ', 2010, NULL, 7500, 0.23, 1, 1, 3467250, 254),
-	(59, 13, 2234, 'Lapangan olah raga terbuka ', 1000, NULL, 1500, 0.23, 1, 22, 33000000, 254),
-	(60, 1, 1000, 'Bangunan Gedung ', 10000, NULL, 7500, 0.79, 1, 1, 59250000, 254),
-	(61, 1, 1000, 'Bangunan Gedung ', 1200, NULL, 7500, 0.11, 1, 1, 990000, 256),
-	(62, 9, 2221, 'Gerbang ', 5, NULL, 5500, 0.11, 1, 1, 27500, 256),
-	(63, 4, 2211, 'Pagar ', 10, NULL, 3000, 0.11, 1, 1, 30000, 256),
-	(64, 12, 2232, 'Lapangan parkir ', 10, NULL, 1500, 0.11, 1, 1, 15000, 256),
-	(65, 37, 2291, 'Billboard/papan iklan ', 1, NULL, 35000, 0.11, 1, 1, 35000, 256),
-	(66, 1, 1000, 'Bangunan Gedung ', 200, NULL, 7500, 0.54, 1, 1, 810000, 256),
-	(67, 1, 1000, 'Bangunan Gedung ', 1000, NULL, 7500, 2.24, 1, 1, 16800000, 257),
-	(68, 9, 2221, 'Gerbang ', 10, NULL, 5500, 2.24, 1, 1, 55000, 257),
-	(69, 12, 2232, 'Lapangan parkir ', 50, NULL, 1500, 2.24, 1, 1, 75000, 257),
-	(70, 24, 2261, 'Menara telekomunikasi ', 1, NULL, 500000, 2.24, 1, 1, 500000, 257),
-	(71, 1, 1000, 'Bangunan Gedung ', 200, NULL, 7500, 0.29, 1, 1, 435000, 257),
-	(76, 4, 2211, 'Pagar ', 1000, NULL, 3000, 0.11, 1, 1, 3000000, 258),
-	(77, 17, 2241, 'Jembatan ', 10, NULL, 13500, 0.11, 1, 1, 135000, 258),
-	(78, 1, 1000, 'Bangunan Gedung ', 500, NULL, 7500, 0.11, 1, 1, 412500, 258),
-	(79, 1, 1000, 'Bangunan Gedung ', 250, NULL, 7500, 0.09, 1, 1, 168750, 258);
+INSERT INTO `transskr` (`idTransSKR`, `idmhargasat`, `kode`, `unit_bangunan`, `luas`, `satuan`, `harga_satuan`, `indeks_integritas`, `indeks_basement`, `indeks_lingpem`, `jumlah_unit`, `jumlah_ret`, `idheaderskr`) VALUES
+	(36, 1, 1000, 'Bangunan Gedung ', 100, NULL, 7500, 0.14, NULL, 1, 1, 105000, 189),
+	(37, 9, 2221, 'Gerbang ', 3, NULL, 5500, 0.14, NULL, 1, 1, 16500, 189),
+	(41, 1, 1000, 'Bangunan Gedung ', 100, NULL, 7500, 0.14, NULL, 1, 1, 105000, 191),
+	(42, 5, 2212, 'Tanggul/retaining wall ', 335, NULL, 5000, 0.14, NULL, 1, 1, 1675250, 191),
+	(43, 12, 2232, 'Lapangan parker ', 78, NULL, 1500, 0.14, NULL, 1, 1, 117000, 191),
+	(44, 18, 2242, 'Box culverf ', 35, NULL, 4500, 0.14, NULL, 1, 1, 157455, 191),
+	(45, 1, 1000, 'Bangunan Gedung ', 100, NULL, 7500, 0.14, NULL, 1, 1, 105000, 192),
+	(46, 12, 2232, 'Lapangan parker ', 2, NULL, 1500, 0.14, NULL, 1, 1, 3000, 192),
+	(47, 1, 1000, 'Bangunan Gedung ', 100, NULL, 7500, 0.14, NULL, 1, 1, 105000, 193),
+	(48, 6, 2213, 'Turap batas kavling/persil ', 22, NULL, 4000, 0.14, NULL, 1, 1, 88000, 193),
+	(49, 1, 1000, 'Bangunan Gedung ', 200, NULL, 7500, 0.49, NULL, 0.65, 1, 477750, 195),
+	(50, 22, 2253, 'Reservoir air bawah tanah ', 50, NULL, 3000, 0.49, NULL, 0.65, 1, 97500, 195),
+	(51, 1, 1000, 'Bangunan Gedung ', 200, NULL, 7500, 0.49, NULL, 1, 1, 735000, 196),
+	(52, 11, 2231, 'Jalan ', 1000, NULL, 2000, 0.49, NULL, 1, 1, 2000000, 196),
+	(53, 13, 2234, 'Lapangan olah raga terbuka ', 200, NULL, 1500, 0.49, NULL, 1, 1, 300300, 196),
+	(54, 11, 2231, 'Jalan ', 10, NULL, 2000, 1.53, NULL, 1, 2, 40000, 201),
+	(55, 13, 2234, 'Lapangan olah raga terbuka ', 2000, NULL, 1500, 0.68, NULL, 1, 1, 3000000, 251),
+	(56, 1, 1000, 'Bangunan Gedung ', 1000, NULL, 7500, 0.11, NULL, 1, 1, 825000, 251),
+	(57, 13, 2234, 'Lapangan olah raga terbuka ', 11, NULL, 1500, 0.68, NULL, 1, 1, 16500, 251),
+	(58, 1, 1000, 'Bangunan Gedung ', 2010, NULL, 7500, 0.23, NULL, 1, 1, 3467250, 254),
+	(59, 13, 2234, 'Lapangan olah raga terbuka ', 1000, NULL, 1500, 0.23, NULL, 1, 22, 33000000, 254),
+	(60, 1, 1000, 'Bangunan Gedung ', 10000, NULL, 7500, 0.79, NULL, 1, 1, 59250000, 254),
+	(61, 1, 1000, 'Bangunan Gedung ', 1200, NULL, 7500, 0.11, NULL, 1, 1, 990000, 256),
+	(62, 9, 2221, 'Gerbang ', 5, NULL, 5500, 0.11, NULL, 1, 1, 27500, 256),
+	(63, 4, 2211, 'Pagar ', 10, NULL, 3000, 0.11, NULL, 1, 1, 30000, 256),
+	(64, 12, 2232, 'Lapangan parkir ', 10, NULL, 1500, 0.11, NULL, 1, 1, 15000, 256),
+	(65, 37, 2291, 'Billboard/papan iklan ', 1, NULL, 35000, 0.11, NULL, 1, 1, 35000, 256),
+	(66, 1, 1000, 'Bangunan Gedung ', 200, NULL, 7500, 0.54, NULL, 1, 1, 810000, 256),
+	(67, 1, 1000, 'Bangunan Gedung ', 1000, NULL, 7500, 2.24, NULL, 1, 1, 16800000, 257),
+	(68, 9, 2221, 'Gerbang ', 10, NULL, 5500, 2.24, NULL, 1, 1, 55000, 257),
+	(69, 12, 2232, 'Lapangan parkir ', 50, NULL, 1500, 2.24, NULL, 1, 1, 75000, 257),
+	(70, 24, 2261, 'Menara telekomunikasi ', 1, NULL, 500000, 2.24, NULL, 1, 1, 500000, 257),
+	(71, 1, 1000, 'Bangunan Gedung ', 200, NULL, 7500, 0.29, NULL, 1, 1, 435000, 257),
+	(76, 4, 2211, 'Pagar ', 1000, NULL, 3000, 0.11, NULL, 1, 1, 3000000, 258),
+	(77, 17, 2241, 'Jembatan ', 10, NULL, 13500, 0.11, NULL, 1, 1, 135000, 258),
+	(78, 1, 1000, 'Bangunan Gedung ', 500, NULL, 7500, 0.11, NULL, 1, 1, 412500, 258),
+	(79, 1, 1000, 'Bangunan Gedung ', 250, NULL, 7500, 0.09, NULL, 1, 1, 168750, 258),
+	(86, 1, 1000, 'Bangunan Gedung Under Sea Water Park', 500, NULL, 7500, 2.795, '(b)', 1, 1, 10481250, 260),
+	(87, 12, 2232, 'Lapangan parkir ', 1000, NULL, 1500, 2.15, '', 1, 1, 1500000, 260),
+	(88, 1, 1000, 'Bangunan Gedung Pekerja', 20, NULL, 7500, 2.15, '', 1, 1, 322500, 260);
 /*!40000 ALTER TABLE `transskr` ENABLE KEYS */;
 
 
@@ -85672,11 +85722,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `iduser` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `userlevel` varchar(50) NOT NULL,
   PRIMARY KEY (`iduser`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table ksr.user: ~0 rows (approximately)
+-- Dumping data for table ksr.user: ~2 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`iduser`, `username`, `password`, `userlevel`) VALUES
+	(1, 'muhie', 'muhie', 'super user'),
+	(2, 'ali', '12122', 'user');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
