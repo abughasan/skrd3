@@ -137,8 +137,21 @@ class Report extends CI_Controller {
 		$var['interface'] = array("menu","report_all");
 		
 		$this->db->order_by("id", "desc"); 
+		$this->db->where('trash is null');
 		$var['headerskr'] = $this->app_model->getAllData('transheaderskr');
 		
 		$this->load->view('home',$var);
+	}
+	
+	/*
+		HAPUS Laporan per SKRD
+	*/
+	function delete_skrd($id_headerskr)
+	{
+		$update = $this->app_model->updateData('transheaderskr',array('trash'=>'delete'),array('id'=>$id_headerskr));
+		
+		if($this->db->affected_rows() > 0):
+			redirect('report/all');
+		endif;
 	}
 }
