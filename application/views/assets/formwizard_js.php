@@ -624,9 +624,11 @@
 			}
 			function tambah_integrasi(angka)
 			{
+				// HAPUS TOMBOL TAMBAH INTEGRASI
 				var hapus = angka - 1;
-				// alert(hapus);
 				$('#btn_tambah_'+hapus).addClass('hide');
+				// HAPUS TOMBOL TAMBAH INTEGRASI
+				
 					$.ajax({
 						url: "<?= base_url() ?>transaksi/tambah_int_klas/"+angka, cache: false,
 						success: function(msg){
