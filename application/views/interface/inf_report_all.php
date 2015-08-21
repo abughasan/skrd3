@@ -49,9 +49,11 @@
 											<?=@$this->app_model->getSelectedData('dbangunan',array('id'=>$row->idbangunan))->row()->lokasi?> Kec. <?=@$this->app_model->getSelectedData('mkecamatan',array('kecamatan_id'=>$this->app_model->getSelectedData('dbangunan',array('id'=>$row->idbangunan))->row()->kecamatan_id))->row()->kecamatan_name?>, Kel. <?=@$this->app_model->getSelectedData('mdesa',array('desa_id'=>$this->app_model->getSelectedData('dbangunan',array('id'=>$row->idbangunan))->row()->desa_id))->row()->desa_name?>
 											</td>
 											<td class="autonum" align="right"><?=ceil($this->app_model->manualQuery("	SELECT SUM(jumlah_ret) tot FROM transskr WHERE idheaderskr = {$row->id}")->row()->tot / 1000 ) * 1000 ?></td>
-											<td align="center">
+											<td align="center" width="80px">
 												<a class="btn btn-minier btn-danger" href="<?=base_url()?>report/delete_skrd/<?=$row->id?>"><i class="ace-icon fa fa-trash"></i></a>
+												<a class="btn btn-minier btn-warning" href="<?=base_url()?>transaksi/edit/<?=$row->id?>"><i class="ace-icon fa fa-pencil"></i></a>
 												<a class="btn btn-minier btn-info" href="<?=base_url()?>report/skrd/<?=$row->id?>"><i class="ace-icon fa fa-print"></i></a>
+											</div>
 											</td>
 										</tr>
 										<?php endforeach; ?>
