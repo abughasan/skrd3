@@ -39,7 +39,7 @@ class Transaksi extends CI_Controller {
 		$var['title'] = "Dashboard";
 		$var['body_class'] = "no-skin";
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","select-formwizard","googleapis_font","ace_min_css","ace-extra_min_js");
-		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","formwizard_js");
+		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","formwizard_js","edit_wizard_js");
 		$var['template'] = "standalone";
 		$var['interface'] = array("force_login","menu","edit_wizard");
 		$var['komponen_bottom'] = array("footer");
