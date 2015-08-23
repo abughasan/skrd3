@@ -50,7 +50,7 @@
 											</td>
 											<td class="autonum" align="right"><?=ceil($this->app_model->manualQuery("	SELECT SUM(jumlah_ret) tot FROM transskr WHERE idheaderskr = {$row->id}")->row()->tot / 1000 ) * 1000 ?></td>
 											<td align="center" width="80px">
-												<a class="btn btn-minier btn-danger" href="<?=base_url()?>report/delete_skrd/<?=$row->id?>"><i class="ace-icon fa fa-trash"></i></a>
+												<a class="btn btn-minier btn-danger" onclick="deletelap(<?=$row->id?>)"><i class="ace-icon fa fa-trash"></i></a>
 												<a class="btn btn-minier btn-warning" href="<?=base_url()?>transaksi/edit/<?=$row->id?>"><i class="ace-icon fa fa-pencil"></i></a>
 												<a class="btn btn-minier btn-info" href="<?=base_url()?>report/skrd/<?=$row->id?>"><i class="ace-icon fa fa-print"></i></a>
 											</div>
