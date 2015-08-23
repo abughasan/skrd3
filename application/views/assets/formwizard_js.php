@@ -497,11 +497,14 @@
 					$('#total_skrd_fix_bulat').autoNumeric('set',Math.ceil(total / 1000) * 1000);
 					$('#btn_total_skrd').addClass('hide');
 					$('#btn_simpan_skrd').removeClass('hide');
+					$('#btn_update_skrd').removeClass('hide');
 					$('#btn_reset_total_skrd').removeClass('hide');
 				})
 				$('#btn_reset_total_skrd').click(function(){
 					$('#btn_total_skrd').removeClass('hide');
 					$('#btn_reset_total_skrd').addClass('hide');
+					$('#btn_simpan_skrd').addClass('hide');
+					$('#btn_update_skrd').addClass('hide');
 					$('.tr_total').remove();
 				});
 				$('#btn_simpan_skrd').click(function(){
@@ -536,7 +539,38 @@
 						}
 					})
 				});
-				
+				$('#btn_update_skrd').click(function(){
+					var arridmhargasatuan = [];
+					var arrkode = [];
+					var arrunitbangunan = [];
+					var arrluas = [];
+					var arrharga_satuan = [];
+					var arrindeks_integritas = [];
+					var arrindeks_lingpem = [];
+					var arrjumlah_unit = [];
+					var arrjumlah_ret = [];
+					
+					var arridmhargasatuan = $(".kode_skrd option:selected").map(function() { return $(this).val().split("*")[1]; }).get();
+					var arrkode = $(".kode_skrd option:selected").map(function() { return $(this).val().split("*")[0]; }).get();
+					$('[name^="unit_bangunan"]').each(function() { arrunitbangunan.push($(this).val()) });
+					$('[name^="luas"]').each(function() { arrluas.push($(this).autoNumeric('get')) });
+					var arrharga_satuan = $(".kode_skrd option:selected").map(function() { return $(this).val().split("*")[2]; }).get();
+					$("td.skrd_integrasi").each(function() { arrindeks_integritas.push($(this).text()) });
+					$("td.skrd_lingpem").each(function() { arrindeks_lingpem.push($(this).text()) });
+					$('[name^="jmlunit"]').each(function() { arrjumlah_unit.push($(this).val()) });
+					$('[name^="jumlah_skrd"]').each(function() { arrjumlah_ret.push($(this).autoNumeric('get')) });
+					
+					// alert(arrindeks_integritas);
+					
+					$.ajax({
+						url: "<?= base_url() ?>transaksi/simpanTransSKRD/", cache: false,
+						type: 'post',
+						data: {idmhargasatuan:arridmhargasatuan,kode:arrkode,unit_bangunan:arrunitbangunan,luas:arrluas,harga_satuan:arrharga_satuan,indeks_integritas:arrindeks_integritas,indeks_lingpem:arrindeks_lingpem,jumlah_unit:arrjumlah_unit,jumlah_ret:arrjumlah_ret},
+						success: function(msg){
+							alert(msg);
+						}
+					})
+				});
 				
 			})
 			function kodeskrd_change(nth)
@@ -631,6 +665,20 @@
 				
 					$.ajax({
 						url: "<?= base_url() ?>transaksi/tambah_int_klas/"+angka, cache: false,
+						success: function(msg){
+							$('#canvas_tambah').append(msg);
+						}
+					})
+			}
+			function tambah_integrasi2(angka)
+			{
+				// HAPUS TOMBOL TAMBAH INTEGRASI
+				var hapus = angka - 1;
+				$('#btn_tambah_'+hapus).addClass('hide');
+				// HAPUS TOMBOL TAMBAH INTEGRASI
+				
+					$.ajax({
+						url: "<?= base_url() ?>transaksi/tambah_int_klas2/"+angka, cache: false,
 						success: function(msg){
 							$('#canvas_tambah').append(msg);
 						}

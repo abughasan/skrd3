@@ -6,7 +6,7 @@
 
 						<div class="page-header">
 							<h1>
-								Perhitungan dan Penetapan Retribusi
+								<span style="color:orange">EDIT</span> Perhitungan dan Penetapan Retribusi
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
 									
@@ -135,7 +135,7 @@
 													</div>
 
 													<div class="step-pane" data-step="4">
-														<?=$this->load->view('interface/inf_tr_wiz_4')?>
+														<?=$this->load->view('interface/inf_ed_wiz_4')?>
 													</div>
 												</div>
 											</div>
@@ -253,3 +253,7 @@
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
+			
+			<style>
+				.steps li.active:before, .steps li.complete:before, .steps li.active .step, .steps li.complete .step {border-color:orange}
+			</style>

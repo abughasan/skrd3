@@ -15,7 +15,7 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<div class="alert alert-info">
+								<div class="alert alert-info hide">
 									<button class="close" data-dismiss="alert">
 										<i class="ace-icon fa fa-times"></i>
 									</button>
