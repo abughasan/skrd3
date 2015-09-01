@@ -39,12 +39,16 @@ class Transaksi extends CI_Controller {
 		$var['title'] = "Dashboard";
 		$var['body_class'] = "no-skin";
 		$var['assets_top'] = array("acebootstrap_css","fontawesome_css","select-formwizard","googleapis_font","ace_min_css","ace-extra_min_js");
-		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","formwizard_js","edit_wizard_js");
+		$var['assets_bottom'] = array("jquery","bootstrap_min_js","formwizard_js_plugin","ace-script_min_js","autoNumeric_js","edit_wizard_js");
 		$var['template'] = "standalone";
 		$var['interface'] = array("force_login","menu","edit_wizard");
 		$var['komponen_bottom'] = array("footer");
 		
 		// data dari database
+		//wizard 1
+		$var['propinsi'] = $this->app_model->getAllData('mpropinsi')->result();
+		//wizard 2
+		$var['kecamatan'] = $this->app_model->getSelectedData('mkecamatan',array('kota_id'=>'106'))->result();
 		//wizard 3
 		$var['lingkup'] = $this->app_model->getAllData('mlingkup')->result();
 		$var['fungsi'] = $this->app_model->getAllData('mfungsi')->result();
@@ -82,8 +86,6 @@ class Transaksi extends CI_Controller {
 		
 		//----------SKRD EDIT
 		$var['skr_ed'] = $this->app_model->getSelectedData('transskr',array('idheaderskr'=>$noskr));
-		
-		
 		
 		$this->load->view('home',$var);
 	}
@@ -232,9 +234,43 @@ class Transaksi extends CI_Controller {
 			echo "\nGAGAL Menyimpan Transaksi Header. Periksa koneksi internet / Hubungi IT administrator anda";
 		endif;
 		
+		$user = $this->session->userdata('idtransheader');
 		
-		$this->session->set_userdata('namawr', $data['nama']);
-		$this->session->set_userdata('idtransheader', $thlastid);
+		if(empty($user)) {
+			$this->session->set_userdata('namawr', $data['nama']);
+			$this->session->set_userdata('idtransheader', $thlastid);
+		}
+		
+	}
+	
+	function updateDataWajibPajak()
+	{
+		$data['nama'] = $_POST['namawr'];
+		$data['pt'] = $_POST['pt'];
+		$data['alamat'] = $_POST['alamatpt'];
+		$data['propinsi_id'] = @$_POST['propinsi'];
+		$data['kota_id'] = @$_POST['kota'];
+		$data['kecamatan_id'] = $_POST['kecamatan'];
+		$data['desa_id'] = @$_POST['desa'];
+		
+		$insert = $this->app_model->insertData('dwajibretribusi',$data);
+		$wrlastid =  $this->db->insert_id();
+		if($this->db->affected_rows()>0):
+			echo "Data wajib retribusi an ".$data['nama']." telah tersimpan dengan ID ". $wrlastid;
+		else:
+			echo "GAGAL Menyimpan Data WR. Periksa koneksi internet / Hubungi IT administrator anda";
+		endif;
+		
+		$idtransheader = $this->session->userdata('idtransheader');
+		$transheader['idwajibret'] = $wrlastid;
+		$where['id'] = $idtransheader;
+		
+		$update = $this->app_model->updateData('transheaderskr',$transheader,$where);
+		if($this->db->affected_rows()>0):
+			echo "\nData transaksi header telah terupdate ";
+		else:
+			echo "\nGAGAL Mengupdate Transaksi Header. Periksa koneksi internet / Hubungi IT administrator anda";
+		endif;
 		
 	}
 	

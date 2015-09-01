@@ -41,8 +41,9 @@
 										?>
 										<tr>
 											<td><?=$a?></td>
-											<td><?=$row->id?></td>
-											<td><?=$row->tgl_penetapan?></td>
+											<td><?=(($row->noskr!='123')? $row->noskr : $row->id)?>
+											<a class="btn btn-minier btn-warning" onclick="editnoskr(<?=$row->id?>)"><i class="ace-icon fa fa-pencil"></i></a></td>
+											<td><?=$row->tgl_penetapan?><input type="hidden" value="<?=$row->tgl_penetapan?>" class="datepicker2" id="<?=$row->id?>"></td>
 											<td><?=@$this->app_model->getSelectedData('dwajibretribusi',array('id'=>$row->idwajibret))->row()->nama?></td>
 											<td><?=@$this->app_model->getSelectedData('mfungsi',array('idmfungsi'=>$this->app_model->getSelectedData('transintegritas',array('idheaderskr'=>"{$row->id}"))->row()->idmfungsi))->row()->parameter?></td>
 											<td>

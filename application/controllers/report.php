@@ -154,4 +154,25 @@ class Report extends CI_Controller {
 			redirect('report/all');
 		endif;
 	}
+	
+	function editnoskr($noskrbaru)
+	{
+		$ex = explode("_",$noskrbaru);
+		$update = $this->app_model->updateData('transheaderskr',array('noskr'=>$ex[0]),array('id'=>$ex[1]));
+		
+		if($this->db->affected_rows() > 0):
+			echo "Berhasil";
+		endif;
+	}
+	
+	function edittglpenetapan($noskrbaru)
+	{
+		$ex = explode("_",$noskrbaru);
+		$update = $this->app_model->updateData('transheaderskr',array('tgl_penetapan'=>$ex[0]),array('id'=>$ex[1]));
+		
+		if($this->db->affected_rows() > 0):
+			echo "Berhasil";
+		endif;
+	}
+	
 }

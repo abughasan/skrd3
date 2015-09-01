@@ -17,7 +17,24 @@
       $('#dateStart').change( function() { table.draw(); } );
       $('#dateEnd').keyup( function() { table.draw(); } );
       $('#dateEnd').change( function() { table.draw(); } );
-} );
+	} );
+	$( ".datepicker2" ).each(function(i) {
+		this.id = $(this).attr('id');
+	}).datepicker({
+		dateFormat: "yy-mm-dd",
+		showOn: "button",
+		buttonImage: "<?=$this->config->item('base_assets')?>jqplugins/jqui/images/calendar.gif",
+		buttonImageOnly: true,
+		onSelect:function(selectedDate){
+				$.ajax({
+					url:'<?=base_url()?>report/edittglpenetapan/'+selectedDate+'_'+this.id,cache:false,
+					success:function(msg){
+						alert(msg);
+						window.location='';
+					}
+				})
+		   }
+	});
 
 function deletelap(idlap)
 {
@@ -36,5 +53,25 @@ function deletelap(idlap)
 	{
 		
 	}
+}
+
+function editnoskr(noskr)
+{
+	var data = prompt("Masukkan no SKR Baru.", "123");
+	// alert(data);
+	if(data == "123" || data == null){
+	}else{
+		$.ajax({
+			url: '<?=base_url()?>report/editnoskr/'+data+'_'+noskr, cache:false,
+			success:function(e){
+				alert(e);
+				window.location='';
+			}
+		})
+	}
+}
+function edittglpenetapan(noskr)
+{
+	
 }
 </script>

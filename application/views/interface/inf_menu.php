@@ -42,6 +42,10 @@
 
 						<b class="arrow"></b>
 					</li>
+					<?php 
+							$userlevel = $this->session->userdata('userlevel');
+							if ($userlevel=='super user') :
+					?>
 					<li class="<?php ((isset($mmaster_data)) ? print $mmaster_data : ""); ?>">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-list"></i>
@@ -121,10 +125,6 @@
 
 								<b class="arrow"></b>
 							</li>
-							<?php 
-							$userlevel = $this->session->userdata('userlevel');
-							if ($userlevel=='super user') :
-							?>
 							<li class="<?php ((isset($duser)) ? print $duser : ""); ?>">
 								<a href="<?=base_url()?>master/user">
 									<i class="menu-icon fa fa-users"></i>
@@ -135,7 +135,6 @@
 								</a>
 
 							</li>
-							<?php endif; ?>
 						</ul>
 					</li>
 
@@ -147,6 +146,7 @@
 
 						<b class="arrow"></b>
 					</li>
+							<?php endif; ?>
 					<li class="">
 						<a href="<?=base_url()?>report/all">
 							<i class="menu-icon fa fa-book"></i>
