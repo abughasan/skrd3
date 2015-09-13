@@ -6,7 +6,31 @@
     var table = $('#reportAll').DataTable({
         dom: 'T<"clear">lfrtip',
 		tableTools: {
-            "sSwfPath": "<?=$this->config->item('base_assets')?>jqplugins/dataTables/ext/copy_csv_xls_pdf.swf"
+			"sRowSelect": "multi",
+            "sSwfPath": "<?=$this->config->item('base_assets')?>jqplugins/dataTables/ext/copy_csv_xls_pdf.swf",
+			"aButtons": [
+				{
+                    "sExtends":    "collection",
+                    "sButtonText": "Pilih",
+                    "aButtons":    [ "select_all", "select_none"]
+                },
+				{
+					"sExtends": "copy",
+					"bSelectedOnly": true
+				},
+				{
+					"sExtends": "xls",
+					"bSelectedOnly": true
+				},
+				{
+					"sExtends": "pdf",
+					"bSelectedOnly": true
+				},
+				{
+					"sExtends": "print",
+					"bSelectedOnly": true
+				},
+			]
         }
     });
 	$( ".datepicker" ).datepicker({

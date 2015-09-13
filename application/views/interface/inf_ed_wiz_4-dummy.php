@@ -1,3 +1,4 @@
+<div id="inf_edit_wizard_4-dummy">
 <h3 class="lighter block green">Edit Perhitungan Biaya Retribusi</h3>
 														<form class="form-horizontal" id="validation-form3">
 														<div class="form-group">
@@ -55,3 +56,4 @@
 <style>
 	.kode_skrd {width:100px!important}
 </style>
+</div>

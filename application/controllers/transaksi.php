@@ -44,11 +44,14 @@ class Transaksi extends CI_Controller {
 		$var['interface'] = array("force_login","menu","edit_wizard");
 		$var['komponen_bottom'] = array("footer");
 		
+		$var['noskr'] = $noskr;
 		// data dari database
 		//wizard 1
 		$var['propinsi'] = $this->app_model->getAllData('mpropinsi')->result();
+		$var['kabupaten'] = $this->app_model->getAllData('mkota')->result();
+		$var['kecamatan'] = $this->app_model->getAllData('mkecamatan')->result();
 		//wizard 2
-		$var['kecamatan'] = $this->app_model->getSelectedData('mkecamatan',array('kota_id'=>'106'))->result();
+		$var['kecamatan_cilegon'] = $this->app_model->getSelectedData('mkecamatan',array('kota_id'=>'106'))->result();
 		//wizard 3
 		$var['lingkup'] = $this->app_model->getAllData('mlingkup')->result();
 		$var['fungsi'] = $this->app_model->getAllData('mfungsi')->result();
@@ -69,7 +72,12 @@ class Transaksi extends CI_Controller {
 		$var['ls'] = $this->app_model->getSelectedData('mlingkup',
 							array( 'idmlingkup'  =>  $var['ilp_sub']->row()->idmling )
 						);
-						
+		
+		//-----------WRet EDIT
+		$var['wr'] = $this->app_model->getSelectedData('dwajibretribusi',array('id'=>$var['ilp']->row()->idwajibret));
+		//-----------Bangunan EDIT
+		$var['dbangunan'] = $this->app_model->getSelectedData('dbangunan',array('id'=>$var['ilp']->row()->idbangunan));
+		
 		//-----------INTEGRASI EDIT
 		$var['int2'] = $this->app_model->getSelectedData('transintegritas',array('idheaderskr'=>$noskr));
 		$var['int'] = $this->app_model->getSelectedData('transintegritas',array('idheaderskr'=>$noskr,'tabel_ke'=>'1'));
@@ -441,7 +449,7 @@ class Transaksi extends CI_Controller {
 			if($this->db->affected_rows()>0):
 				echo "\nIndeks Integritas terupdate";	
 			else:
-				echo "\nTidak ada perubahan indeks integritas";
+				echo "\nTidak ada perubahan indeks integritas ";
 			endif;
 			
 			else:
@@ -567,27 +575,61 @@ class Transaksi extends CI_Controller {
 			<option value="<?=$row->indeks_integritas?>"><?=$row->indeks_integritas?> - indeks ke - <?=$row->tabel_ke?></option>
 		<?php endforeach; ?>
 		</select>
-		&nbsp;<input type="checkbox" name="basement" id="checkbox_basement"> Basement
+		&nbsp;<input type="checkbox" name="basement" id="checkbox_basement" onclick="ibase_check(<?=$nomer_row?>)"> Basement
 		
 		<script>
 			$('#changeIntegrasi').change(function(){
 				var new_indeks = $('#changeIntegrasi option:selected').val();
 				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
 				hitungskrdblur(<?=$nomer_row?>);
-				$( "input" ).change(function() {
-				  var $input = $( this );
-				  if ($input.is( ":checked" )) {
-					var new_indeks = Math.round($('#changeIntegrasi option:selected').val() * 1.3 * 100)/100 + "(b)";
-					$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
-					hitungskrdblur(<?=$nomer_row?>);
-				  }else{
-					var new_indeks = $('#changeIntegrasi option:selected').val();
-					$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
-					hitungskrdblur(<?=$nomer_row?>);
-				  }
-				}).change();
 			})
+			function ibase_check(a)
+			{
+			if (document.getElementById('checkbox_basement').checked) {
+				var new_indeks = Math.round($('#changeIntegrasi option:selected').val() * 1.3 * 100)/100 + "(b)";
+				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
+				hitungskrdblur(<?=$nomer_row?>);
+			} else {
+				var new_indeks = $('#changeIntegrasi option:selected').val();
+				$('#i_integrasi<?=$nomer_row?>').text(new_indeks);
+				hitungskrdblur(<?=$nomer_row?>);
+			}
+			}
 		</script>
 		<?php
+	}
+	
+	function updateiiSKR($noskr)
+	{
+		$ii = $_POST['iii'];
+		$ii_b = round($_POST['iii'] * 1.3 * 100) /100;
+		$this->db->where('indeks_basement = ""');
+		$update = $this->app_model->updateData('transskr',array('indeks_integritas'=>$ii),array('idheaderskr'=>$noskr));
+		$this->db->where('indeks_basement = "(b)"');
+		$update = $this->app_model->updateData('transskr',array('indeks_integritas'=>$ii_b),array('idheaderskr'=>$noskr));
+		
+		//----------SKRD EDIT
+		$var['skr_ed'] = $this->app_model->getSelectedData('transskr',array('idheaderskr'=>$noskr));
+		$var['hargasatuan'] = $this->app_model->getAllData('mhargasatuan');
+		
+		if($this->db->affected_rows()>0):
+			$this->load->view('interface/inf_ed_wiz_4',$var);
+		else:
+			echo "gagal update ii";
+			$this->load->view('interface/inf_ed_wiz_4',$var);
+		endif;
+	}
+	
+	function updateII1by1($var)
+	{
+		$var = explode("-",$var);
+		$noskr = $var[0];
+		$iike = $var[1]-1;
+		$this->db->limit(1,$iike);
+		$get = $this->app_model->getSelectedData('transskr',array('idheaderskr'=>$noskr));
+		echo $get->row()->indeks_integritas;
+		if($get->row()->indeks_basement != ""):
+			echo " ".$get->row()->indeks_basement;
+		endif;
 	}
 }

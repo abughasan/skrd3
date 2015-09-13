@@ -71,11 +71,11 @@
 
 												<div class="step-content pos-rel">
 													<div class="step-pane" data-step="1">
-														<?=$this->load->view('interface/inf_tr_wiz_1')?>
+														<?=$this->load->view('interface/inf_ed_wiz_1')?>
 													</div>
 
 													<div class="step-pane" data-step="2">
-														<?=$this->load->view('interface/inf_tr_wiz_2')?>
+														<?=$this->load->view('interface/inf_ed_wiz_2')?>
 														<div class="hide">
 															<div class="alert alert-success">
 																<button type="button" class="close" data-dismiss="alert">
@@ -134,8 +134,9 @@
 														
 													</div>
 
-													<div class="step-pane" data-step="4">
-														<?=$this->load->view('interface/inf_ed_wiz_4')?>
+													<div class="step-pane" data-step="4" id="inf_edit_wizard_4">
+															<?=$this->load->view('interface/inf_ed_wiz_4')?>
+														
 													</div>
 												</div>
 											</div>

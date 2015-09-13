@@ -51,7 +51,17 @@
 						if(!$('#validation-form3').valid()) {
 						e.preventDefault();
 						}else{
-							
+							var ii = $('#indeks_integritas').val();
+							$.ajax({
+								type: 'post',
+								data: {'iii':ii},
+								url: "<?= base_url() ?>transaksi/updateiiSKR/<?=$this->uri->segment(3)?>", cache:false,
+								success: function(msg){
+									// $('#inf_edit_wizard_4-dummy').remove();
+									// $('#inf_edit_wizard_4').append(msg);
+										updateiiajax()
+								}
+							});
 						}
 					}
 				})
@@ -573,6 +583,19 @@
 				});
 				
 			})
+			///UPDATE II AJAX
+			function updateiiajax(){
+				<?php $i=0;foreach($skr_ed->result() as $r):$i++; ?>
+				$.ajax({
+					url:"<?=base_url()?>transaksi/updateII1by1/<?=$noskr?>-<?=$i?>",cache:false,
+					success:function(msg){
+						$('#i_integrasi<?=$i?>').text(msg);
+						hitungskrdblur(<?=$i?>);
+					}
+				})
+				<?php endforeach; ?>	
+			}
+			///UPDATE II AJAX
 			function kodeskrd_change(nth)
 			{
 				var nomer = nth;
@@ -645,6 +668,7 @@
 					tdjmlunit.addClass('danger');
 				}
 				autonumskrd(nomer);
+				console.log(parseFloat($('#jmlunit'+nomer).val()));
 			}
 			function hapusskrd(nth){
 				var nomer = nth;
@@ -707,6 +731,5 @@ $(document).ready(function () {
 	autonumskrd(<?=$i?>)
 	// alert(<?=$i?>)
 <?php endforeach; ?>
-			
 });
 </script>
